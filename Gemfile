@@ -28,8 +28,8 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 # custom gems
-gem 'omniauth-facebook'
 gem 'devise'
+gem 'omniauth-facebook'
 gem 'better_errors'
 gem 'pry'
 gem 'pry-rails'
