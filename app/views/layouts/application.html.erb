@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Bludkin</title>
+  <title>BludKin</title>
   
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
@@ -9,14 +9,6 @@
 </head>
 <body>
 
-<ul class = "nav nav-tabs">
-  <% if user_signed_in? %>
-    <li> <%= link_to "Sign Out", destroy_user_session_fb_path %> </li>
-
-    <li> <a href="/users/edit">Edit Profile</a></li>
-    
-<% end %> 
-</ul>
 
 <p class=“notice”><%= notice %></p>
 <p class=“alert”><%= alert %></p>
@@ -24,5 +16,45 @@
 <div id = "main-container">
 <%= yield %>
 </div>
+
+
+
+<!-- TEMPLATES BELOW -->
+<!-- nav bar -->
+<script id="home-template" type = "text/x-handlebars-template">
+<nav id = "nav-bar-template" >
+<ul class = "nav nav-tabs">
+  <% if user_signed_in? %>
+    <li> <a href="#">Home</a></li>
+
+    <li> <a href="/users/edit">Edit Profile</a></li>
+    <li> <%= link_to "Sign Out", destroy_user_session_fb_path %> </li>
+<% end %> 
+</ul>
+</nav>
+
+<h1>BLUDKIN</h1>
+
+
+<div id="calendar-view">
+
+  <div id="calendar" class="large-6 columns"></div>
+
+  <div id="content-view" class="large-6 columns">
+    <div id = "cycle-info">
+      <h3>Cycle Info</h3>
+        <form action="">
+          <input class= "small-3 columns" type="text" placeholder = "Start Date">
+
+
+          <input class = "button radius round" type="submit" name= "Archive">
+        </form>
+    </div>
+  </div>
+
+</div>
+</script>
+
+
 </body>
 </html>

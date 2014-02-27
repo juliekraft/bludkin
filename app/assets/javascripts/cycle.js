@@ -1,3 +1,24 @@
+var calendar_options = {
+  // put your options and callbacks here
+  dayClick: function(date, allDay, jsEvent, view) {
+
+  // Cycle.new({user_id: this.user.user_id, start_date: date});
+
+  //UGLY, FIX THIS
+  $(this).css('background-color', '#67090C');
+  $(this).next().css('background-color', '#67090C');
+  $(this).next().next().css('background-color', '#67090C');
+  $(this).next().next().next().css('background-color', '#67090C');
+  }
+  // eventRender: function(event, element) {
+  //     element.qtip({
+  //         content: event.description
+  //     })
+  // }
+}
+
+
+
 var App = Backbone.Router.extend({
   routes: {
     "": "home", // friends network
@@ -10,12 +31,18 @@ var App = Backbone.Router.extend({
     app.current_page = "home"
     if (ui) ui.remove()
     var ui = new UI()
+    var home = new UI.Home()
+    ui.$el.append(home.render().$el)
+    $('#calendar').fullCalendar(calendar_options)
+
+
   },
 
   calendar: function(){
     app.current_page = "calendar"
     if (ui) ui.remove()
     var ui = new UI()
+    $('#calendar').fullCalendar(calendar_options)
   }
 })
 
@@ -66,7 +93,22 @@ UI.NavBar = Backbone.View.extend({
 
 })
 
+UI.Home = Backbone.View.extend({
+  initialize: function(){
 
+  },
+  template: function(attributes){
+    var source = $('#home-template').html()
+      var template = Handlebars.compile(source)
+      return template(attributes)
+  }, 
+   render: function(){
+    this.$el.html(this.template({ }))
+    return this;
+  }
+
+
+})
 
 
 

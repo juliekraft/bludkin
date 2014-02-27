@@ -9,7 +9,7 @@ Bludkin::Application.routes.draw do
   #   root to: "devise/sessions#new", :as => "authenticated_root"
   # end
 
-  root to: 'home#index' 
+  root to: 'home#index'
 
   resources :cycles
 
