@@ -1,22 +1,28 @@
 var calendar_options = {
   // put your options and callbacks here
   dayClick: function(date, allDay, jsEvent, view) {
-
+    console.log('date', date)
+    $start = $('#start_date_input')
+    
   // Cycle.new({user_id: this.user.user_id, start_date: date});
 
   //UGLY, FIX THIS
-  $(this).css('background-color', '#67090C');
-  $(this).next().css('background-color', '#67090C');
-  $(this).next().next().css('background-color', '#67090C');
-  $(this).next().next().next().css('background-color', '#67090C');
-  }
+  // $(this).css('background-color', '#67090C');
+  // $(this).next().css('background-color', '#67090C');
+  // $(this).next().next().css('background-color', '#67090C');
+  // $(this).next().next().next().css('background-color', '#67090C');
+  // }
   // eventRender: function(event, element) {
   //     element.qtip({
   //         content: event.description
   //     })
-  // }
+}
 }
 
+  // $('td').on('click', function(data){
+  //   console.log("TD day clicked")
+  //   console.log("data", data)
+  // })
 
 
 var App = Backbone.Router.extend({
