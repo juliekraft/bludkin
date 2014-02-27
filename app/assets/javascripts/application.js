@@ -14,7 +14,9 @@
 //= require jquery_ujs
 //= require underscore-min
 //= require backbone
+//= require handlebars
 //= require fullcalendar
+//= require cycle
 //= require scripts
 //= require turbolinks
 
