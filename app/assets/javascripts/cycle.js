@@ -1,9 +1,10 @@
 var calendar_options = {
   // put your options and callbacks here
   dayClick: function(date, allDay, jsEvent, view) {
-    console.log('date', date)
-    $start = $('#start_date_input')
+    // console.log('date', date)
+    $('#start-date-input').val(date)
     
+
   // Cycle.new({user_id: this.user.user_id, start_date: date});
 
   //UGLY, FIX THIS
