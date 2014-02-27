@@ -12,5 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require underscore-min
+//= require backbone
+//= require fullcalendar
+//= require scripts
 //= require turbolinks
-//= require_tree .
+
