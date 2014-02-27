@@ -6875,3 +6875,3030 @@ Migrating to AddImageColumnToUser (20140227161429)
   [1m[35mSQL (0.9ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140227161429"]]
   [1m[36m (19.7ms)[0m  [1mCOMMIT[0m
   [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (47.9ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [1m[35m (2.8ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateMessages (20140226210644)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (40.1ms)[0m  [1mCREATE TABLE "messages" ("id" serial primary key, "to_id" integer, "from_id" integer, "message" text, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140226210644"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+Migrating to CreateFollows (20140226210706)
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36m (14.9ms)[0m  [1mCREATE TABLE "follows" ("id" serial primary key, "follower_id" integer, "followee_id" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140226210706"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+Migrating to CreateCycles (20140226210811)
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (3.8ms)[0m  [1mCREATE TABLE "cycles" ("id" serial primary key, "user_id" integer, "start_date" date, "period_end_date" date, "cycle_end_date" date, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140226210811"]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+Migrating to CreateCycleContents (20140226210934)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (6.3ms)[0m  [1mCREATE TABLE "cycle_contents" ("id" serial primary key, "mood" integer, "cycle_id" integer, "user_id" integer, "pain" integer, "note" text, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140226210934"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+Migrating to CreateUsers (20140226211841)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (4.9ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "name" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140226211841"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to AddDeviseToUsers (20140226212422)
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (26.9ms)[0m  [1mALTER TABLE "users" ADD COLUMN "email" character varying(255) DEFAULT '' NOT NULL[0m
+  [1m[35m (5.3ms)[0m  ALTER TABLE "users" ADD COLUMN "encrypted_password" character varying(255) DEFAULT '' NOT NULL
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "users" ADD COLUMN "reset_password_token" character varying(255)[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "users" ADD COLUMN "reset_password_sent_at" timestamp
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "users" ADD COLUMN "remember_created_at" timestamp[0m
+  [1m[35m (4.8ms)[0m  ALTER TABLE "users" ADD COLUMN "sign_in_count" integer DEFAULT 0 NOT NULL
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "users" ADD COLUMN "current_sign_in_at" timestamp[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "users" ADD COLUMN "last_sign_in_at" timestamp
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "users" ADD COLUMN "current_sign_in_ip" character varying(255)[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "users" ADD COLUMN "last_sign_in_ip" character varying(255)
+  [1m[36m (1.1ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (1.4ms)[0m  CREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140226212422"]]
+  [1m[35m (2.4ms)[0m  COMMIT
+Migrating to AddColumnsToUsers (20140226213322)
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.6ms)[0m  ALTER TABLE "users" ADD COLUMN "provider" character varying(255)
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "users" ADD COLUMN "uid" character varying(255)[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140226213322"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to AddImageColumnToUser (20140227161429)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "users" ADD COLUMN "image" character varying(255)[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140227161429"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.4ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 11:32:25 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HomeController#index as HTML
+Completed 401 Unauthorized in 56ms
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2014-02-27 11:32:25 -0500
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (1.8ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (16.4ms)
+Completed 200 OK in 145ms (Views: 125.3ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/assets/foundation.css?body=1" for 127.0.0.1 at 2014-02-27 11:32:26 -0500
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 127.0.0.1 at 2014-02-27 11:32:26 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 11:32:26 -0500
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-02-27 11:32:26 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 11:32:26 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 11:32:26 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 11:32:26 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 11:32:26 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 11:32:26 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 11:32:26 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 11:32:26 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 11:32:26 -0500
+
+
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2014-02-27 11:32:27 -0500
+
+
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2014-02-27 11:32:27 -0500
+
+
+Started GET "/users/auth/facebook/callback?code=AQC10MfpXGwwS0JrmJ6VS_I38DCtsNp8fpwZKYSArMHVxtCY2EO0FF8_8I3qmNmSG6yXoxJIU5kp5zm2t06Hp5ZniGaFIBIbedgbuTDPYQAPgvMgp4kwnF382S2mmZKiV_Gp0Xw33Mr5kcFft_1zPxvba0TXR2WK9nyCQUAcZihSBsj6b2A-CUMlQneXPtH2CF7tP2wyTVoS8b6EnDm4HApdMziwGYEQTG_oOBeZo--4owGm0wed8AzmoKf0E-2Q8JzjbC5kNorGY9Ww0ir1RpvXI2XJ40QjRzNQRAyi99NdH2LOB702afgsOERvdRA2Ia4&state=826a31e421bcbfd3dc3a9333cbb8b7591f91849e361118f6" for 127.0.0.1 at 2014-02-27 11:32:28 -0500
+Processing by Users::OmniauthCallbacksController#facebook as HTML
+  Parameters: {"code"=>"AQC10MfpXGwwS0JrmJ6VS_I38DCtsNp8fpwZKYSArMHVxtCY2EO0FF8_8I3qmNmSG6yXoxJIU5kp5zm2t06Hp5ZniGaFIBIbedgbuTDPYQAPgvMgp4kwnF382S2mmZKiV_Gp0Xw33Mr5kcFft_1zPxvba0TXR2WK9nyCQUAcZihSBsj6b2A-CUMlQneXPtH2CF7tP2wyTVoS8b6EnDm4HApdMziwGYEQTG_oOBeZo--4owGm0wed8AzmoKf0E-2Q8JzjbC5kNorGY9Ww0ir1RpvXI2XJ40QjRzNQRAyi99NdH2LOB702afgsOERvdRA2Ia4", "state"=>"826a31e421bcbfd3dc3a9333cbb8b7591f91849e361118f6"}
+  [1m[35mUser Load (2.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."provider" = 'facebook' AND "users"."uid" = '25519940' ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.6ms)[0m  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'julieschmoo@gmail.com' LIMIT 1
+  [1m[36mSQL (9.7ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "encrypted_password", "image", "name", "provider", "uid", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["created_at", Thu, 27 Feb 2014 16:32:28 UTC +00:00], ["email", "julieschmoo@gmail.com"], ["encrypted_password", "$2a$10$1K/0kE4LxiGUsT4YhHGj.uD5vdmUKBOhtPhWuswP0S/HA9lUoc4ey"], ["image", "http://graph.facebook.com/25519940/picture"], ["name", "Julie Kraft"], ["provider", "facebook"], ["uid", "25519940"], ["updated_at", Thu, 27 Feb 2014 16:32:28 UTC +00:00]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  UPDATE "users" SET "last_sign_in_at" = $1, "current_sign_in_at" = $2, "last_sign_in_ip" = $3, "current_sign_in_ip" = $4, "sign_in_count" = $5, "updated_at" = $6 WHERE "users"."id" = 1  [["last_sign_in_at", Thu, 27 Feb 2014 16:32:28 UTC +00:00], ["current_sign_in_at", Thu, 27 Feb 2014 16:32:28 UTC +00:00], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", Thu, 27 Feb 2014 16:32:28 UTC +00:00]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 146ms (ActiveRecord: 15.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 11:32:28 -0500
+Processing by HomeController#index as HTML
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1
+  Rendered home/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 73ms (Views: 70.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 11:32:28 -0500
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 127.0.0.1 at 2014-02-27 11:32:28 -0500
+
+
+Started GET "/assets/foundation.css?body=1" for 127.0.0.1 at 2014-02-27 11:32:28 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 11:32:28 -0500
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-02-27 11:32:28 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 11:32:28 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 11:32:28 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 11:32:28 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 11:32:28 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 11:32:28 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 11:32:28 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 11:32:28 -0500
+
+
+Started GET "/sign_out" for 127.0.0.1 at 2014-02-27 11:32:50 -0500
+Processing by Devise::SessionsController#destroy as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 67ms (ActiveRecord: 1.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 11:32:50 -0500
+Processing by HomeController#index as HTML
+Completed 401 Unauthorized in 1ms
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2014-02-27 11:32:50 -0500
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (0.6ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 12ms (Views: 10.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2014-02-27 11:32:51 -0500
+
+
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2014-02-27 11:32:51 -0500
+
+
+Started GET "/users/auth/facebook/callback?code=AQBx14fCCANJOO50EZ8pxKUtVg7OaFtK8BrGTBUW_bz2PRe4kfZ91TdH6llsbcebZVA_awDJsCvb_1kVV4Eh0Nxcu2th912I4euWd_058CQWhWJ-ujfcPwqc4Cm63R8rm2kocZdLH34rENn56IO4puH37zqiK2S8WM6l2Miq6F6ohuUJy9Ey8N1y2nouerTBmA3y4gS3Gtunp0qoig_kSSs33KE0871-15PEg4DEo5oEhtWx_-F0_PKmLUxLOGVCZkNSHVXjHTVJ78GL2YKnNVT__1rnwzbhmDeppKamR4MZHgfeQ-mmVO1XZr-Pk_9P-4k&state=97fb3dc857ea6faa9ed6f79db7c641a92841f2423ae23ee2" for 127.0.0.1 at 2014-02-27 11:32:52 -0500
+Processing by Users::OmniauthCallbacksController#facebook as HTML
+  Parameters: {"code"=>"AQBx14fCCANJOO50EZ8pxKUtVg7OaFtK8BrGTBUW_bz2PRe4kfZ91TdH6llsbcebZVA_awDJsCvb_1kVV4Eh0Nxcu2th912I4euWd_058CQWhWJ-ujfcPwqc4Cm63R8rm2kocZdLH34rENn56IO4puH37zqiK2S8WM6l2Miq6F6ohuUJy9Ey8N1y2nouerTBmA3y4gS3Gtunp0qoig_kSSs33KE0871-15PEg4DEo5oEhtWx_-F0_PKmLUxLOGVCZkNSHVXjHTVJ78GL2YKnNVT__1rnwzbhmDeppKamR4MZHgfeQ-mmVO1XZr-Pk_9P-4k", "state"=>"97fb3dc857ea6faa9ed6f79db7c641a92841f2423ae23ee2"}
+  [1m[35mUser Load (0.9ms)[0m  SELECT "users".* FROM "users" WHERE "users"."provider" = 'facebook' AND "users"."uid" = '25519940' ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  UPDATE "users" SET "current_sign_in_at" = $1, "sign_in_count" = $2, "updated_at" = $3 WHERE "users"."id" = 1  [["current_sign_in_at", Thu, 27 Feb 2014 16:32:52 UTC +00:00], ["sign_in_count", 2], ["updated_at", Thu, 27 Feb 2014 16:32:52 UTC +00:00]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 7ms (ActiveRecord: 2.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 11:32:52 -0500
+Processing by HomeController#index as HTML
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1
+  Rendered home/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 8ms (Views: 6.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/foundation.css?body=1" for 127.0.0.1 at 2014-02-27 11:32:52 -0500
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-02-27 11:32:52 -0500
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 127.0.0.1 at 2014-02-27 11:32:52 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 11:32:52 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 11:32:52 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 11:32:53 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 11:32:53 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 11:32:53 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 11:32:53 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 11:32:53 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 11:32:53 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 11:32:53 -0500
+
+
+Started GET "/users/edit" for 127.0.0.1 at 2014-02-27 11:33:51 -0500
+Processing by Devise::RegistrationsController#edit as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1[0m
+  Rendered devise/registrations/edit.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 26ms (Views: 22.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/sign_out" for 127.0.0.1 at 2014-02-27 11:33:57 -0500
+Processing by Devise::SessionsController#destroy as HTML
+  [1m[35mUser Load (0.7ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  COMMIT
+Redirected to http://localhost:3000/
+Completed 302 Found in 9ms (ActiveRecord: 1.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 11:33:57 -0500
+Processing by HomeController#index as HTML
+Completed 401 Unauthorized in 1ms
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2014-02-27 11:33:57 -0500
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (0.5ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 12ms (Views: 10.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2014-02-27 11:34:02 -0500
+
+
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2014-02-27 11:34:02 -0500
+
+
+Started GET "/users/auth/facebook/callback?code=AQADBAdliGtoz3dylTd6itX1t8zgjCgW9typYKINUGLeYs0u2u8nV0KBHBjSaPVcbZFrIMPbTcbXNAf7s08EcBLedHBomcKbGtYT789kWVpqfoWzUoiCPPZUuUbyusuSFUj_wZCxiK4WC1W-cheosM_to6jqT2zKkFwM1Y4Asn_79gPpeRDnPD-1_jzCzztxmLZSF53x12fukG3acNY-M-qzzKOY2VO7boDORQqU9BKAM8V-s7_sxMLsgn3FYzRfoLzlJccA5xFrGnTgYv7OQJ5wBnPulR2cphR44sYeW7YyVfZd45eXqQ6-6ETKjZzRo-8&state=83e073c1b4b3d45b6c81e3d008fb3f3e989674b11ca2360b" for 127.0.0.1 at 2014-02-27 11:34:02 -0500
+Processing by Users::OmniauthCallbacksController#facebook as HTML
+  Parameters: {"code"=>"AQADBAdliGtoz3dylTd6itX1t8zgjCgW9typYKINUGLeYs0u2u8nV0KBHBjSaPVcbZFrIMPbTcbXNAf7s08EcBLedHBomcKbGtYT789kWVpqfoWzUoiCPPZUuUbyusuSFUj_wZCxiK4WC1W-cheosM_to6jqT2zKkFwM1Y4Asn_79gPpeRDnPD-1_jzCzztxmLZSF53x12fukG3acNY-M-qzzKOY2VO7boDORQqU9BKAM8V-s7_sxMLsgn3FYzRfoLzlJccA5xFrGnTgYv7OQJ5wBnPulR2cphR44sYeW7YyVfZd45eXqQ6-6ETKjZzRo-8", "state"=>"83e073c1b4b3d45b6c81e3d008fb3f3e989674b11ca2360b"}
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."provider" = 'facebook' AND "users"."uid" = '25519940' ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.9ms)[0m  [1mUPDATE "users" SET "last_sign_in_at" = $1, "current_sign_in_at" = $2, "sign_in_count" = $3, "updated_at" = $4 WHERE "users"."id" = 1[0m  [["last_sign_in_at", Thu, 27 Feb 2014 16:32:52 UTC +00:00], ["current_sign_in_at", Thu, 27 Feb 2014 16:34:03 UTC +00:00], ["sign_in_count", 3], ["updated_at", Thu, 27 Feb 2014 16:34:03 UTC +00:00]]
+  [1m[35m (57.5ms)[0m  COMMIT
+Redirected to http://localhost:3000/
+Completed 302 Found in 64ms (ActiveRecord: 59.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 11:34:03 -0500
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1[0m
+  Rendered home/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 10ms (Views: 7.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 11:34:03 -0500
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 127.0.0.1 at 2014-02-27 11:34:03 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 11:34:03 -0500
+
+
+Started GET "/assets/foundation.css?body=1" for 127.0.0.1 at 2014-02-27 11:34:03 -0500
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-02-27 11:34:03 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 11:34:03 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 11:34:03 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 11:34:03 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 11:34:03 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 11:34:03 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 11:34:03 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 11:34:03 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 11:34:20 -0500
+Processing by HomeController#index as HTML
+Completed 401 Unauthorized in 1ms
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2014-02-27 11:34:20 -0500
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (0.6ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 12ms (Views: 10.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 11:34:20 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 11:34:20 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 11:34:20 -0500
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 127.0.0.1 at 2014-02-27 11:34:20 -0500
+
+
+Started GET "/assets/foundation.css?body=1" for 127.0.0.1 at 2014-02-27 11:34:20 -0500
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-02-27 11:34:20 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 11:34:20 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 11:34:20 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 11:34:20 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 11:34:20 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 11:34:20 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 11:34:20 -0500
+
+
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2014-02-27 11:34:22 -0500
+
+
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2014-02-27 11:34:22 -0500
+
+
+Started GET "/sign_out" for 127.0.0.1 at 2014-02-27 11:34:36 -0500
+Processing by Devise::SessionsController#destroy as HTML
+  [1m[35mUser Load (0.8ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  COMMIT
+Redirected to http://localhost:3000/
+Completed 302 Found in 8ms (ActiveRecord: 1.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 11:34:36 -0500
+Processing by HomeController#index as HTML
+Completed 401 Unauthorized in 1ms
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2014-02-27 11:34:36 -0500
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (0.9ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (5.2ms)
+Completed 200 OK in 14ms (Views: 13.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2014-02-27 11:35:21 -0500
+
+
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2014-02-27 11:35:21 -0500
+
+
+Started GET "/users/auth/facebook/callback?code=AQA_oOYY1G5LZKg5aEbjhJBIKZBEo65OgKQ8ldSXyEiSJL1W49K1erGP8B0QH5i4Lx9BUVOxAxrq3adW_qjba5zyWMH0YR3r8GOsJl9p2QzTx7WCshnStLQjy25qEpGDFJC5Sj-QzzEE4kKqb3zH6NEen9JO_Wssja5sqC0buV7zJVWZ9sc4Z478_8QXzHtvIF6JoDVzjZc_EQc5v83J4Uwfntp8-1sfV6LlvwzA_ti0FvYaYjp-w5oaUeE2rB--zvdZQAjLhxrFyxU2PrWytiMGYrLXjV6hPZ55PMKWz-FuWv88pFEEBWEKBe6bIj-ywr4&state=ba646f24f8d8f0677fb64fe68e27803775e19ce9eafe8563" for 127.0.0.1 at 2014-02-27 11:35:21 -0500
+Processing by Users::OmniauthCallbacksController#facebook as HTML
+  Parameters: {"code"=>"AQA_oOYY1G5LZKg5aEbjhJBIKZBEo65OgKQ8ldSXyEiSJL1W49K1erGP8B0QH5i4Lx9BUVOxAxrq3adW_qjba5zyWMH0YR3r8GOsJl9p2QzTx7WCshnStLQjy25qEpGDFJC5Sj-QzzEE4kKqb3zH6NEen9JO_Wssja5sqC0buV7zJVWZ9sc4Z478_8QXzHtvIF6JoDVzjZc_EQc5v83J4Uwfntp8-1sfV6LlvwzA_ti0FvYaYjp-w5oaUeE2rB--zvdZQAjLhxrFyxU2PrWytiMGYrLXjV6hPZ55PMKWz-FuWv88pFEEBWEKBe6bIj-ywr4", "state"=>"ba646f24f8d8f0677fb64fe68e27803775e19ce9eafe8563"}
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."provider" = 'facebook' AND "users"."uid" = '25519940' ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mUPDATE "users" SET "last_sign_in_at" = $1, "current_sign_in_at" = $2, "sign_in_count" = $3, "updated_at" = $4 WHERE "users"."id" = 1[0m  [["last_sign_in_at", Thu, 27 Feb 2014 16:34:03 UTC +00:00], ["current_sign_in_at", Thu, 27 Feb 2014 16:35:21 UTC +00:00], ["sign_in_count", 4], ["updated_at", Thu, 27 Feb 2014 16:35:21 UTC +00:00]]
+  [1m[35m (0.5ms)[0m  COMMIT
+Redirected to http://localhost:3000/
+Completed 302 Found in 6ms (ActiveRecord: 2.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 11:35:21 -0500
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1[0m
+  Rendered home/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 51ms (Views: 48.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 11:35:21 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 11:35:21 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 11:35:21 -0500
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-02-27 11:35:21 -0500
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 127.0.0.1 at 2014-02-27 11:35:21 -0500
+
+
+Started GET "/assets/foundation.css?body=1" for 127.0.0.1 at 2014-02-27 11:35:21 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 11:35:21 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 11:35:21 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 11:35:22 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 11:35:22 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 11:35:22 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 11:35:22 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 11:47:29 -0500
+Processing by HomeController#index as HTML
+  [1m[35mUser Load (0.7ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1
+  Rendered home/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 21ms (Views: 18.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 11:47:29 -0500
+
+
+Started GET "/assets/foundation.css?body=1" for 127.0.0.1 at 2014-02-27 11:47:29 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 11:47:29 -0500
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-02-27 11:47:29 -0500
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 127.0.0.1 at 2014-02-27 11:47:29 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 11:47:29 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 11:47:29 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 11:47:29 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 11:47:29 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 11:47:29 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 11:47:29 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 11:47:29 -0500
+
+
+Started GET "/sign_out" for 127.0.0.1 at 2014-02-27 11:47:33 -0500
+Processing by Devise::SessionsController#destroy as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 8ms (ActiveRecord: 1.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 11:47:33 -0500
+Processing by HomeController#index as HTML
+Completed 401 Unauthorized in 1ms
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2014-02-27 11:47:33 -0500
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (0.7ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 13ms (Views: 11.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2014-02-27 11:47:41 -0500
+
+
+Started GET "/users/auth/facebook" for 127.0.0.1 at 2014-02-27 11:47:41 -0500
+
+
+Started GET "/users/auth/facebook/callback?code=AQDNjlxwxf_06DxFp9J-UGJ6ISnVLCVIxkLVTB3QiiauRJAGCPWNevIWEVJ-E1t21TwY8IATYC20wpXkUUY3XscX9VOGmmAW5FqLEebplgggRywJPBmhxH2HDk8g3YXUsacbtrbAGCyAALtAXKW81qRVVoGWcxEzM5UCA6FHAGT0wzN0cay5loSR5lGs-OC-zhd2SWuia4RbCRhU5KR2X6W3RbFTeI22hT9nSDsnNvpei0dOK3U8jNSAmo5UwvEp74cTHNbjNIhMJuJXstIIPRkuQb5oc1gpD6HNVoZIvaAK8ZLEXAnkTpJ2RIY0mry5UTY&state=0619700c7a4d1521e854e52d8e7a5f601f1f9908e962ec13" for 127.0.0.1 at 2014-02-27 11:47:41 -0500
+Processing by Users::OmniauthCallbacksController#facebook as HTML
+  Parameters: {"code"=>"AQDNjlxwxf_06DxFp9J-UGJ6ISnVLCVIxkLVTB3QiiauRJAGCPWNevIWEVJ-E1t21TwY8IATYC20wpXkUUY3XscX9VOGmmAW5FqLEebplgggRywJPBmhxH2HDk8g3YXUsacbtrbAGCyAALtAXKW81qRVVoGWcxEzM5UCA6FHAGT0wzN0cay5loSR5lGs-OC-zhd2SWuia4RbCRhU5KR2X6W3RbFTeI22hT9nSDsnNvpei0dOK3U8jNSAmo5UwvEp74cTHNbjNIhMJuJXstIIPRkuQb5oc1gpD6HNVoZIvaAK8ZLEXAnkTpJ2RIY0mry5UTY", "state"=>"0619700c7a4d1521e854e52d8e7a5f601f1f9908e962ec13"}
+  [1m[35mUser Load (0.7ms)[0m  SELECT "users".* FROM "users" WHERE "users"."provider" = 'facebook' AND "users"."uid" = '25519940' ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  UPDATE "users" SET "last_sign_in_at" = $1, "current_sign_in_at" = $2, "sign_in_count" = $3, "updated_at" = $4 WHERE "users"."id" = 1  [["last_sign_in_at", Thu, 27 Feb 2014 16:35:21 UTC +00:00], ["current_sign_in_at", Thu, 27 Feb 2014 16:47:42 UTC +00:00], ["sign_in_count", 5], ["updated_at", Thu, 27 Feb 2014 16:47:42 UTC +00:00]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 7ms (ActiveRecord: 2.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 11:47:42 -0500
+Processing by HomeController#index as HTML
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1
+  Rendered home/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 9ms (Views: 7.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-02-27 11:47:42 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 11:47:42 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 11:47:42 -0500
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 127.0.0.1 at 2014-02-27 11:47:42 -0500
+
+
+Started GET "/assets/foundation.css?body=1" for 127.0.0.1 at 2014-02-27 11:47:42 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 11:47:42 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 11:47:42 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 11:47:42 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 11:47:42 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 11:47:42 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 11:47:42 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 11:47:42 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 11:50:41 -0500
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1[0m
+  Rendered home/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 107ms (Views: 105.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 11:50:41 -0500
+
+
+Started GET "/assets/foundation.css?body=1" for 127.0.0.1 at 2014-02-27 11:50:41 -0500
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 127.0.0.1 at 2014-02-27 11:50:41 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 11:50:41 -0500
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-02-27 11:50:41 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 11:50:41 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 11:50:41 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 11:50:41 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 11:50:41 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 11:50:41 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 11:50:41 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 11:50:41 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 11:51:31 -0500
+Processing by HomeController#index as HTML
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1
+  Rendered home/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 9ms (Views: 6.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 11:51:31 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 11:51:31 -0500
+
+
+Started GET "/assets/foundation.css?body=1" for 127.0.0.1 at 2014-02-27 11:51:31 -0500
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-02-27 11:51:31 -0500
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 127.0.0.1 at 2014-02-27 11:51:31 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 11:51:31 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 11:51:31 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 11:51:31 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 11:51:31 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 11:51:31 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 11:51:31 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 11:51:31 -0500
+
+
+Started GET "/assets/underscore-min.map" for 127.0.0.1 at 2014-02-27 11:51:36 -0500
+
+ActionController::RoutingError (No route matches [GET] "/assets/underscore-min.map"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.7ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (49.9ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (79.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 11:52:07 -0500
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (1.5ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1[0m
+  Rendered home/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 14ms (Views: 9.1ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 11:52:07 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 11:52:07 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 11:52:07 -0500
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-02-27 11:52:07 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 11:52:07 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 11:52:07 -0500
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 127.0.0.1 at 2014-02-27 11:52:07 -0500
+
+
+Started GET "/assets/foundation.css?body=1" for 127.0.0.1 at 2014-02-27 11:52:07 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 11:52:07 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 11:52:07 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 11:52:07 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 11:52:07 -0500
+
+
+Started GET "/assets/underscore-min.map" for 127.0.0.1 at 2014-02-27 11:52:07 -0500
+
+ActionController::RoutingError (No route matches [GET] "/assets/underscore-min.map"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.3ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.4ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (28.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 11:52:25 -0500
+Processing by HomeController#index as HTML
+  [1m[35mUser Load (0.7ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1
+  Rendered home/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 11ms (Views: 8.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/foundation.css?body=1" for 127.0.0.1 at 2014-02-27 11:52:25 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 11:52:25 -0500
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-02-27 11:52:25 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 11:52:25 -0500
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 127.0.0.1 at 2014-02-27 11:52:25 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 11:52:25 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 11:52:25 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 11:52:25 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 11:52:25 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 11:52:25 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 11:52:25 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 11:52:25 -0500
+
+
+Started GET "/assets/underscore-min.map" for 127.0.0.1 at 2014-02-27 11:52:25 -0500
+
+ActionController::RoutingError (No route matches [GET] "/assets/underscore-min.map"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.7ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.2ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.6ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (29.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 11:54:26 -0500
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1[0m
+  Rendered home/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 76ms (Views: 73.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 127.0.0.1 at 2014-02-27 11:54:26 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 11:54:26 -0500
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-02-27 11:54:26 -0500
+
+
+Started GET "/assets/foundation.css?body=1" for 127.0.0.1 at 2014-02-27 11:54:26 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 11:54:26 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 11:54:26 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 11:54:26 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 11:54:26 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 11:54:26 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 11:54:26 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 11:54:26 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 11:54:26 -0500
+
+
+Started GET "/assets/underscore-min.map" for 127.0.0.1 at 2014-02-27 11:54:26 -0500
+
+ActionController::RoutingError (No route matches [GET] "/assets/underscore-min.map"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.5ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.8ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (27.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 11:59:55 -0500
+Processing by HomeController#index as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1
+  Rendered home/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 208ms (Views: 185.6ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 11:59:56 -0500
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 127.0.0.1 at 2014-02-27 11:59:56 -0500
+
+
+Started GET "/assets/foundation.css?body=1" for 127.0.0.1 at 2014-02-27 11:59:56 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 11:59:56 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 11:59:56 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 11:59:56 -0500
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-02-27 11:59:56 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 11:59:56 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 11:59:56 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 11:59:56 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 11:59:56 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 11:59:56 -0500
+
+
+Started GET "/assets/underscore-min.map" for 127.0.0.1 at 2014-02-27 11:59:56 -0500
+
+ActionController::RoutingError (No route matches [GET] "/assets/underscore-min.map"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.1ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.4ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.8ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (29.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 12:00:02 -0500
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1[0m
+  Rendered home/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 62ms (Views: 59.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 12:00:02 -0500
+
+
+Started GET "/assets/foundation.css?body=1" for 127.0.0.1 at 2014-02-27 12:00:02 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 12:00:02 -0500
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 127.0.0.1 at 2014-02-27 12:00:02 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 12:00:02 -0500
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-02-27 12:00:02 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 12:00:02 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 12:00:02 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 12:00:02 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 12:00:02 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 12:00:02 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 12:00:02 -0500
+
+
+Started GET "/assets/underscore-min.map" for 127.0.0.1 at 2014-02-27 12:00:02 -0500
+
+ActionController::RoutingError (No route matches [GET] "/assets/underscore-min.map"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.0ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.3ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (41.5ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (66.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 12:00:13 -0500
+Processing by HomeController#index as HTML
+  [1m[35mUser Load (0.8ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1
+  Rendered home/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 88ms (Views: 83.9ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 12:00:13 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 12:00:13 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 12:00:13 -0500
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-02-27 12:00:13 -0500
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 127.0.0.1 at 2014-02-27 12:00:13 -0500
+
+
+Started GET "/assets/foundation.css?body=1" for 127.0.0.1 at 2014-02-27 12:00:13 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 12:00:13 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 12:00:13 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 12:00:13 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 12:00:13 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 12:00:13 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 12:00:13 -0500
+
+
+Started GET "/assets/underscore-min.map" for 127.0.0.1 at 2014-02-27 12:00:13 -0500
+
+ActionController::RoutingError (No route matches [GET] "/assets/underscore-min.map"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.8ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.8ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.5ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (32.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 12:01:03 -0500
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1[0m
+  Rendered home/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 68ms (Views: 65.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 12:01:03 -0500
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-02-27 12:01:03 -0500
+
+
+Started GET "/assets/foundation.css?body=1" for 127.0.0.1 at 2014-02-27 12:01:03 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 12:01:03 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 12:01:03 -0500
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 127.0.0.1 at 2014-02-27 12:01:03 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 12:01:03 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 12:01:03 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 12:01:03 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 12:01:03 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 12:01:03 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 12:01:03 -0500
+
+
+Started GET "/assets/underscore-min.map" for 127.0.0.1 at 2014-02-27 12:01:03 -0500
+
+ActionController::RoutingError (No route matches [GET] "/assets/underscore-min.map"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.7ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (3.3ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.6ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (34.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 12:02:30 -0500
+Processing by HomeController#index as HTML
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1
+  Rendered home/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 66ms (Views: 63.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 12:02:30 -0500
+
+
+Started GET "/assets/foundation.css?body=1" for 127.0.0.1 at 2014-02-27 12:02:30 -0500
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 127.0.0.1 at 2014-02-27 12:02:30 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 12:02:30 -0500
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-02-27 12:02:30 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 12:02:30 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 12:02:30 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 12:02:30 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 12:02:30 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 12:02:30 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 12:02:30 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 12:02:30 -0500
+
+
+Started GET "/assets/underscore-min.map" for 127.0.0.1 at 2014-02-27 12:02:30 -0500
+
+ActionController::RoutingError (No route matches [GET] "/assets/underscore-min.map"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.8ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.8ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.6ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (40.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 12:04:41 -0500
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1[0m
+  Rendered home/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 63ms (Views: 60.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 12:04:41 -0500
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 127.0.0.1 at 2014-02-27 12:04:41 -0500
+
+
+Started GET "/assets/foundation.css?body=1" for 127.0.0.1 at 2014-02-27 12:04:41 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 12:04:41 -0500
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-02-27 12:04:41 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 12:04:41 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 12:04:41 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 12:04:41 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 12:04:41 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 12:04:41 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 12:04:41 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 12:04:41 -0500
+
+
+Started GET "/assets/underscore-min.map" for 127.0.0.1 at 2014-02-27 12:04:41 -0500
+
+ActionController::RoutingError (No route matches [GET] "/assets/underscore-min.map"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (3.1ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.6ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (34.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 12:04:50 -0500
+Processing by HomeController#index as HTML
+  [1m[35mUser Load (0.7ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1
+  Rendered home/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 70ms (Views: 67.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 127.0.0.1 at 2014-02-27 12:04:51 -0500
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-02-27 12:04:51 -0500
+
+
+Started GET "/assets/foundation.css?body=1" for 127.0.0.1 at 2014-02-27 12:04:51 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 12:04:51 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 12:04:51 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 12:04:51 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 12:04:51 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 12:04:51 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 12:04:51 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 12:04:51 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 12:04:51 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 12:04:51 -0500
+
+
+Started GET "/assets/underscore-min.map" for 127.0.0.1 at 2014-02-27 12:04:51 -0500
+
+ActionController::RoutingError (No route matches [GET] "/assets/underscore-min.map"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.6ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.3ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.1ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (30.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 12:06:53 -0500
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1[0m
+  Rendered home/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 63ms (Views: 60.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 12:06:53 -0500
+
+
+Started GET "/assets/foundation.css?body=1" for 127.0.0.1 at 2014-02-27 12:06:53 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 12:06:53 -0500
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-02-27 12:06:53 -0500
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 127.0.0.1 at 2014-02-27 12:06:53 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 12:06:53 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 12:06:53 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 12:06:53 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 12:06:53 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 12:06:53 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 12:06:53 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 12:06:53 -0500
+
+
+Started GET "/assets/underscore-min.map" for 127.0.0.1 at 2014-02-27 12:06:53 -0500
+
+ActionController::RoutingError (No route matches [GET] "/assets/underscore-min.map"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.9ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.0ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.1ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (70.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 12:07:01 -0500
+Processing by HomeController#index as HTML
+  [1m[35mUser Load (0.7ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1
+  Rendered home/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 32ms (Views: 29.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 12:07:02 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 12:07:02 -0500
+
+
+Started GET "/assets/foundation.css?body=1" for 127.0.0.1 at 2014-02-27 12:07:02 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 12:07:02 -0500
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 127.0.0.1 at 2014-02-27 12:07:02 -0500
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-02-27 12:07:02 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 12:07:02 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 12:07:02 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 12:07:02 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 12:07:02 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 12:07:02 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 12:07:02 -0500
+
+
+Started GET "/assets/underscore-min.map" for 127.0.0.1 at 2014-02-27 12:07:02 -0500
+
+ActionController::RoutingError (No route matches [GET] "/assets/underscore-min.map"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.8ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.9ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.7ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (26.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 12:07:16 -0500
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1[0m
+  Rendered home/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 66ms (Views: 62.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 12:07:16 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 12:07:16 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 12:07:16 -0500
+
+
+Started GET "/assets/foundation.css?body=1" for 127.0.0.1 at 2014-02-27 12:07:16 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 12:07:16 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 12:07:16 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 12:07:16 -0500
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-02-27 12:07:16 -0500
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 127.0.0.1 at 2014-02-27 12:07:16 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 12:07:16 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 12:07:16 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 12:07:16 -0500
+
+
+Started GET "/assets/underscore-min.map" for 127.0.0.1 at 2014-02-27 12:07:16 -0500
+
+ActionController::RoutingError (No route matches [GET] "/assets/underscore-min.map"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.6ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (3.2ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.6ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (31.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 12:08:03 -0500
+Processing by HomeController#index as HTML
+  [1m[35mUser Load (0.7ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1
+  Rendered home/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 10ms (Views: 7.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 12:08:03 -0500
+
+
+Started GET "/assets/foundation.css?body=1" for 127.0.0.1 at 2014-02-27 12:08:03 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 12:08:03 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 12:08:03 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 12:08:03 -0500
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 127.0.0.1 at 2014-02-27 12:08:03 -0500
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-02-27 12:08:03 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 12:08:03 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 12:08:03 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 12:08:03 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 12:08:03 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 12:08:03 -0500
+
+
+Started GET "/assets/underscore-min.map" for 127.0.0.1 at 2014-02-27 12:08:03 -0500
+
+ActionController::RoutingError (No route matches [GET] "/assets/underscore-min.map"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.2ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.7ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (24.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 12:08:51 -0500
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1[0m
+  Rendered home/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 66ms (Views: 62.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 12:08:52 -0500
+
+
+Started GET "/assets/foundation.css?body=1" for 127.0.0.1 at 2014-02-27 12:08:52 -0500
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 127.0.0.1 at 2014-02-27 12:08:52 -0500
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-02-27 12:08:52 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 12:08:52 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 12:08:52 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 12:08:52 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 12:08:52 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 12:08:52 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 12:08:52 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 12:08:52 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 12:08:52 -0500
+
+
+Started GET "/assets/underscore-min.map" for 127.0.0.1 at 2014-02-27 12:08:52 -0500
+
+ActionController::RoutingError (No route matches [GET] "/assets/underscore-min.map"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (3.5ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.8ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (26.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 12:10:47 -0500
+Processing by HomeController#index as HTML
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1
+  Rendered home/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 65ms (Views: 62.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 12:10:47 -0500
+
+
+Started GET "/assets/foundation.css?body=1" for 127.0.0.1 at 2014-02-27 12:10:47 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 12:10:47 -0500
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 127.0.0.1 at 2014-02-27 12:10:47 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 12:10:47 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 12:10:47 -0500
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-02-27 12:10:47 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 12:10:47 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 12:10:47 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 12:10:47 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 12:10:47 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 12:10:47 -0500
+
+
+Started GET "/assets/underscore-min.map" for 127.0.0.1 at 2014-02-27 12:10:47 -0500
+
+ActionController::RoutingError (No route matches [GET] "/assets/underscore-min.map"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.7ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.2ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.7ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (28.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 12:12:13 -0500
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1[0m
+  Rendered home/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 71ms (Views: 67.0ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 12:12:13 -0500
+
+
+Started GET "/assets/foundation.css?body=1" for 127.0.0.1 at 2014-02-27 12:12:13 -0500
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 127.0.0.1 at 2014-02-27 12:12:13 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 12:12:13 -0500
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-02-27 12:12:13 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 12:12:13 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 12:12:13 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 12:12:13 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 12:12:13 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 12:12:13 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 12:12:13 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 12:12:13 -0500
+
+
+Started GET "/assets/underscore-min.map" for 127.0.0.1 at 2014-02-27 12:12:13 -0500
+
+ActionController::RoutingError (No route matches [GET] "/assets/underscore-min.map"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (3.1ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.7ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (31.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 12:12:25 -0500
+Processing by HomeController#index as HTML
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1
+  Rendered home/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 62ms (Views: 59.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 12:12:25 -0500
+
+
+Started GET "/assets/foundation.css?body=1" for 127.0.0.1 at 2014-02-27 12:12:25 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 12:12:25 -0500
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 127.0.0.1 at 2014-02-27 12:12:25 -0500
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-02-27 12:12:25 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 12:12:25 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 12:12:25 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 12:12:25 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 12:12:25 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 12:12:25 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 12:12:25 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 12:12:25 -0500
+
+
+Started GET "/assets/underscore-min.map" for 127.0.0.1 at 2014-02-27 12:12:25 -0500
+
+ActionController::RoutingError (No route matches [GET] "/assets/underscore-min.map"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (3.9ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.6ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (29.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 12:12:51 -0500
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1[0m
+  Rendered home/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 68ms (Views: 65.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 12:12:51 -0500
+
+
+Started GET "/assets/foundation.css?body=1" for 127.0.0.1 at 2014-02-27 12:12:51 -0500
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 127.0.0.1 at 2014-02-27 12:12:51 -0500
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-02-27 12:12:51 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 12:12:51 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 12:12:51 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 12:12:51 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 12:12:51 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 12:12:51 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 12:12:51 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 12:12:51 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 12:12:51 -0500
+
+
+Started GET "/assets/underscore-min.map" for 127.0.0.1 at 2014-02-27 12:12:51 -0500
+
+ActionController::RoutingError (No route matches [GET] "/assets/underscore-min.map"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.3ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.5ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (30.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 12:14:58 -0500
+Processing by HomeController#index as HTML
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1
+  Rendered home/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 9ms (Views: 6.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 12:14:58 -0500
+
+
+Started GET "/assets/foundation.css?body=1" for 127.0.0.1 at 2014-02-27 12:14:58 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 12:14:58 -0500
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 127.0.0.1 at 2014-02-27 12:14:58 -0500
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-02-27 12:14:58 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 12:14:58 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 12:14:58 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 12:14:58 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 12:14:58 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 12:14:58 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 12:14:58 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 12:14:58 -0500
+
+
+Started GET "/assets/underscore-min.map" for 127.0.0.1 at 2014-02-27 12:14:59 -0500
+
+ActionController::RoutingError (No route matches [GET] "/assets/underscore-min.map"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (3.5ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.8ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (33.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 12:15:02 -0500
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1[0m
+  Rendered home/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 9ms (Views: 6.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 12:15:02 -0500
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 127.0.0.1 at 2014-02-27 12:15:02 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 12:15:02 -0500
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-02-27 12:15:02 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 12:15:02 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 12:15:02 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 12:15:02 -0500
+
+
+Started GET "/assets/foundation.css?body=1" for 127.0.0.1 at 2014-02-27 12:15:02 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 12:15:02 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 12:15:02 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 12:15:02 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 12:15:02 -0500
+
+
+Started GET "/assets/underscore-min.map" for 127.0.0.1 at 2014-02-27 12:15:02 -0500
+
+ActionController::RoutingError (No route matches [GET] "/assets/underscore-min.map"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (54.5ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.2ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.8ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (84.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 12:15:16 -0500
+Processing by HomeController#index as HTML
+  [1m[35mUser Load (0.7ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1
+  Rendered home/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 11ms (Views: 8.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 12:15:16 -0500
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 127.0.0.1 at 2014-02-27 12:15:17 -0500
+
+
+Started GET "/assets/foundation.css?body=1" for 127.0.0.1 at 2014-02-27 12:15:17 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 12:15:17 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 12:15:17 -0500
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-02-27 12:15:17 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 12:15:17 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 12:15:17 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 12:15:17 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 12:15:17 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 12:15:17 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 12:15:17 -0500
+
+
+Started GET "/assets/underscore-min.map" for 127.0.0.1 at 2014-02-27 12:15:17 -0500
+
+ActionController::RoutingError (No route matches [GET] "/assets/underscore-min.map"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.9ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.8ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (28.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 12:17:06 -0500
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1[0m
+  Rendered home/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 70ms (Views: 66.5ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 12:17:06 -0500
+
+
+Started GET "/assets/foundation.css?body=1" for 127.0.0.1 at 2014-02-27 12:17:06 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 12:17:06 -0500
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 127.0.0.1 at 2014-02-27 12:17:06 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 12:17:06 -0500
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-02-27 12:17:06 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 12:17:06 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 12:17:06 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 12:17:06 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 12:17:06 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 12:17:06 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 12:17:06 -0500
+
+
+Started GET "/assets/underscore-min.map" for 127.0.0.1 at 2014-02-27 12:17:06 -0500
+
+ActionController::RoutingError (No route matches [GET] "/assets/underscore-min.map"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.7ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.7ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.8ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (31.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 12:17:56 -0500
+Processing by HomeController#index as HTML
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1
+  Rendered home/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 70ms (Views: 67.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 12:17:56 -0500
+
+
+Started GET "/assets/foundation.css?body=1" for 127.0.0.1 at 2014-02-27 12:17:56 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 12:17:56 -0500
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-02-27 12:17:56 -0500
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 127.0.0.1 at 2014-02-27 12:17:56 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 12:17:56 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 12:17:56 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 12:17:56 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 12:17:56 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 12:17:56 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 12:17:56 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 12:17:56 -0500
+
+
+Started GET "/assets/underscore-min.map" for 127.0.0.1 at 2014-02-27 12:17:56 -0500
+
+ActionController::RoutingError (No route matches [GET] "/assets/underscore-min.map"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.0ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.9ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.1ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (24.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 12:26:35 -0500
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1[0m
+  Rendered home/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 65ms (Views: 62.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 12:26:35 -0500
+
+
+Started GET "/assets/foundation.css?body=1" for 127.0.0.1 at 2014-02-27 12:26:35 -0500
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-02-27 12:26:35 -0500
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 127.0.0.1 at 2014-02-27 12:26:35 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 12:26:35 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 12:26:35 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 12:26:35 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 12:26:35 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 12:26:35 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 12:26:35 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 12:26:35 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 12:26:35 -0500
+
+
+Started GET "/assets/underscore-min.map" for 127.0.0.1 at 2014-02-27 12:26:36 -0500
+
+ActionController::RoutingError (No route matches [GET] "/assets/underscore-min.map"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.6ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (3.1ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.1ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (28.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 12:27:11 -0500
+Processing by HomeController#index as HTML
+  [1m[35mUser Load (0.7ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1
+  Rendered home/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 68ms (Views: 64.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 12:27:11 -0500
+
+
+Started GET "/assets/foundation.css?body=1" for 127.0.0.1 at 2014-02-27 12:27:11 -0500
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-02-27 12:27:11 -0500
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 127.0.0.1 at 2014-02-27 12:27:11 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 12:27:11 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 12:27:11 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 12:27:11 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 12:27:11 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 12:27:11 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 12:27:11 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 12:27:11 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 12:27:11 -0500
+
+
+Started GET "/assets/underscore-min.map" for 127.0.0.1 at 2014-02-27 12:27:11 -0500
+
+ActionController::RoutingError (No route matches [GET] "/assets/underscore-min.map"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.7ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (3.2ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.6ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (30.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 12:27:39 -0500
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1[0m
+  Rendered home/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 65ms (Views: 62.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/foundation.css?body=1" for 127.0.0.1 at 2014-02-27 12:27:39 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 12:27:39 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 12:27:39 -0500
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-02-27 12:27:39 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 12:27:39 -0500
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 127.0.0.1 at 2014-02-27 12:27:39 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 12:27:39 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 12:27:39 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 12:27:39 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 12:27:39 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 12:27:39 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 12:27:39 -0500
+
+
+Started GET "/assets/underscore-min.map" for 127.0.0.1 at 2014-02-27 12:27:39 -0500
+
+ActionController::RoutingError (No route matches [GET] "/assets/underscore-min.map"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.6ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.5ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.6ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (27.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 12:27:42 -0500
+Processing by HomeController#index as HTML
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1
+  Rendered home/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 11ms (Views: 8.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/foundation.css?body=1" for 127.0.0.1 at 2014-02-27 12:27:42 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 12:27:42 -0500
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 127.0.0.1 at 2014-02-27 12:27:42 -0500
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-02-27 12:27:42 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 12:27:42 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 12:27:42 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 12:27:42 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 12:27:42 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 12:27:42 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 12:27:42 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 12:27:42 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 12:27:42 -0500
+
+
+Started GET "/assets/underscore-min.map" for 127.0.0.1 at 2014-02-27 12:27:42 -0500
+
+ActionController::RoutingError (No route matches [GET] "/assets/underscore-min.map"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.9ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.2ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.6ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (28.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 12:35:24 -0500
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1[0m
+  Rendered home/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 65ms (Views: 62.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 12:35:24 -0500
+
+
+Started GET "/assets/foundation.css?body=1" for 127.0.0.1 at 2014-02-27 12:35:24 -0500
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-02-27 12:35:24 -0500
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 127.0.0.1 at 2014-02-27 12:35:24 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 12:35:24 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 12:35:24 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 12:35:24 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 12:35:24 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 12:35:24 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 12:35:24 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 12:35:24 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 12:35:24 -0500
+
+
+Started GET "/assets/underscore-min.map" for 127.0.0.1 at 2014-02-27 12:35:24 -0500
+
+ActionController::RoutingError (No route matches [GET] "/assets/underscore-min.map"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.7ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.4ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.1ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (33.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 12:36:19 -0500
+Processing by HomeController#index as HTML
+  [1m[35mUser Load (0.7ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1
+  Rendered home/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 11ms (Views: 7.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 12:36:19 -0500
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 127.0.0.1 at 2014-02-27 12:36:19 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 12:36:19 -0500
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-02-27 12:36:19 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 12:36:19 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 12:36:19 -0500
+
+
+Started GET "/assets/foundation.css?body=1" for 127.0.0.1 at 2014-02-27 12:36:19 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 12:36:19 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 12:36:19 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 12:36:19 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 12:36:19 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 12:36:19 -0500
+
+
+Started GET "/assets/underscore-min.map" for 127.0.0.1 at 2014-02-27 12:36:19 -0500
+
+ActionController::RoutingError (No route matches [GET] "/assets/underscore-min.map"):
+  actionpack (4.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.2) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:25:in `tagged'
+  activesupport (4.0.2) lib/active_support/tagged_logging.rb:67:in `tagged'
+  railties (4.0.2) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.2) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.2) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.2) lib/rails/engine.rb:511:in `call'
+  railties (4.0.2) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /Users/jujube/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.8ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.0ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.6ms)
+  Rendered /Users/jujube/.rvm/gems/ruby-2.0.0-p353@rails4/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (29.2ms)
