@@ -3276,3 +3276,108 @@ LINE 1: SELECT "follows".* FROM "follows"  WHERE "follows"."user_id"...
   [1m[35mFollow Load (0.5ms)[0m  SELECT "follows".* FROM "follows" ORDER BY "follows"."id" ASC LIMIT 1
   [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
   [1m[35mCycle Load (0.6ms)[0m  SELECT "cycles".* FROM "cycles" WHERE "cycles"."user_id" = $1  [["user_id", 1]]
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddImageColumnToUser (20140227161429)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (13.1ms)[0m  [1mALTER TABLE "users" ADD COLUMN "image" character varying(255)[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140227161429"]]
+  [1m[36m (34.7ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mSQL (14.7ms)[0m  DELETE FROM "follows"
+  [1m[36mSQL (1.1ms)[0m  [1mDELETE FROM "messages"[0m
+  [1m[35mSQL (1.0ms)[0m  DELETE FROM "cycles"
+  [1m[36mSQL (1.3ms)[0m  [1mDELETE FROM "cycle_contents"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (46.9ms)[0m  [1mINSERT INTO "follows" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"[0m  [["created_at", Thu, 27 Feb 2014 16:15:15 UTC +00:00], ["updated_at", Thu, 27 Feb 2014 16:15:15 UTC +00:00]]
+  [1m[35m (0.5ms)[0m  COMMIT
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 11:15:49 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HomeController#index as HTML
+  [1m[35mUser Load (1.8ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1
+  Rendered home/index.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 373ms (Views: 262.4ms | ActiveRecord: 5.1ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 11:15:50 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 11:15:50 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 11:15:50 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 11:15:50 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 11:15:50 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 11:15:50 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 11:15:50 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 11:15:50 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 11:15:50 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 11:15:52 -0500
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1[0m
+  Rendered home/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 11ms (Views: 7.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-27 11:15:53 -0500
+
+
+Started GET "/assets/backbone.js?body=1" for 127.0.0.1 at 2014-02-27 11:15:53 -0500
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 127.0.0.1 at 2014-02-27 11:15:53 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-02-27 11:15:53 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-27 11:15:53 -0500
+
+
+Started GET "/assets/underscore-min.js?body=1" for 127.0.0.1 at 2014-02-27 11:15:53 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-02-27 11:15:53 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-27 11:15:53 -0500
+
+
+Started GET "/assets/scripts.js?body=1" for 127.0.0.1 at 2014-02-27 11:15:53 -0500
+
+
+Started GET "/sign_out" for 127.0.0.1 at 2014-02-27 11:15:53 -0500
+Processing by Devise::SessionsController#destroy as HTML
+  [1m[35mUser Load (0.7ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = 1 ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  COMMIT
+Redirected to http://localhost:3000/
+Completed 302 Found in 135ms (ActiveRecord: 1.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-27 11:15:54 -0500
+Processing by HomeController#index as HTML
+Completed 401 Unauthorized in 9ms
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2014-02-27 11:15:54 -0500
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (2.3ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (66.1ms)
+Completed 200 OK in 104ms (Views: 89.7ms | ActiveRecord: 0.0ms)
