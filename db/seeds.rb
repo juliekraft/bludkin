@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+Follow.delete_all
+Message.delete_all
+Cycle.delete_all
+CycleContent.delete_all
+
+follows = Follow.create([{}])

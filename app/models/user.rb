@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   #associations
   has_many :follows
-  has_many :cycles, through: :follows
+  has_many :cycles
   has_many :messages
 
   def self.find_for_facebook_oauth(auth)

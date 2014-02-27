@@ -1,0 +1,287 @@
+CALENDAR JQUERY Plug-In
+http://arshaw.com/fullcalendar/
+
+
+Setting Realtions in Terminal
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2014-02-26 18:57:54 -0500
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.erb (2.5ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (83.5ms)
+Completed 200 OK in 146ms (Views: 142.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-26 18:57:54 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-26 18:57:54 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-26 18:57:54 -0500
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2014-02-26 18:57:56 -0500
+Processing by Devise::RegistrationsController#new as HTML
+  Rendered devise/shared/_links.erb (1.0ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (10.1ms)
+Completed 200 OK in 30ms (Views: 26.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2014-02-26 18:58:06 -0500
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"zdjxd/24CiwzJS30eapoyYMC4a2gaTDU19yiicEbL4k=", "user"=>{"email"=>"Julie@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+   (0.2ms)  BEGIN
+  User Exists (1.9ms)  SELECT 1 AS one FROM "users" WHERE "users"."email" = 'julie@example.com' LIMIT 1
+  SQL (5.6ms)  INSERT INTO "users" ("created_at", "email", "encrypted_password", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", Wed, 26 Feb 2014 23:58:06 UTC +00:00], ["email", "julie@example.com"], ["encrypted_password", "$2a$10$3lt/YNCsbDWwiDfB5/Cbp.U/LTR4v8qFlJE7U/dTQtKEYn0MM9CDK"], ["updated_at", Wed, 26 Feb 2014 23:58:06 UTC +00:00]]
+   (0.7ms)  COMMIT
+   (0.2ms)  BEGIN
+  SQL (0.8ms)  UPDATE "users" SET "last_sign_in_at" = $1, "current_sign_in_at" = $2, "last_sign_in_ip" = $3, "current_sign_in_ip" = $4, "sign_in_count" = $5, "updated_at" = $6 WHERE "users"."id" = 2  [["last_sign_in_at", Wed, 26 Feb 2014 23:58:06 UTC +00:00], ["current_sign_in_at", Wed, 26 Feb 2014 23:58:06 UTC +00:00], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", Wed, 26 Feb 2014 23:58:06 UTC +00:00]]
+   (1.2ms)  COMMIT
+Redirected to http://localhost:3000/
+Completed 302 Found in 160ms (ActiveRecord: 10.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-02-26 18:58:06 -0500
+Processing by HomeController#index as HTML
+  User Load (0.6ms)  SELECT "users".* FROM "users" WHERE "users"."id" = 2 ORDER BY "users"."id" ASC LIMIT 1
+  Rendered home/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 13ms (Views: 9.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-02-26 18:58:07 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-02-26 18:58:07 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-02-26 18:58:07 -0500
+^C[2014-02-26 18:58:10] INFO  going to shutdown ...
+[2014-02-26 18:58:11] INFO  WEBrick::HTTPServer#start done.
+Exiting
+meghannplunkett@192:~/Documents/ga_wdi/Projects/bludkin  master
+$ rails c
+Loading development environment (Rails 4.0.2)
+[1] pry(main)> User.all
+  User Load (2.3ms)  SELECT "users".* FROM "users"
+=> [#<User id: 1, name: nil, created_at: "2014-02-26 23:24:47", updated_at: "2014-02-26 23:24:47", email: "meghann@example.com", encrypted_password: "$2a$10$ITfcNFm6LyDjNF4K3YFbROB/82i2PZhAd.X4KTww3YVt...", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2014-02-26 23:24:47", last_sign_in_at: "2014-02-26 23:24:47", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", provider: nil, uid: nil>,
+ #<User id: 2, name: nil, created_at: "2014-02-26 23:58:06", updated_at: "2014-02-26 23:58:06", email: "julie@example.com", encrypted_password: "$2a$10$3lt/YNCsbDWwiDfB5/Cbp.U/LTR4v8qFlJE7U/dTQtKE...", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2014-02-26 23:58:06", last_sign_in_at: "2014-02-26 23:58:06", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", provider: nil, uid: nil>]
+[2] pry(main)> f = Follow.new
+=> #<Follow id: nil, follower_id: nil, followee_id: nil, created_at: nil, updated_at: nil>
+[3] pry(main)> f.follower_id = 2
+=> 2
+[4] pry(main)> f.followee_id = 1
+=> 1
+[5] pry(main)> f.save
+   (0.2ms)  BEGIN
+  SQL (8.9ms)  INSERT INTO "follows" ("created_at", "followee_id", "follower_id", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", Wed, 26 Feb 2014 23:59:14 UTC +00:00], ["followee_id", 1], ["follower_id", 2], ["updated_at", Wed, 26 Feb 2014 23:59:14 UTC +00:00]]
+   (0.7ms)  COMMIT
+=> true
+[6] pry(main)> f
+=> #<Follow id: 1, follower_id: 2, followee_id: 1, created_at: "2014-02-26 23:59:14", updated_at: "2014-02-26 23:59:14">
+[7] pry(main)> f.follower.email
+  User Load (1.2ms)  SELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT 1  [["id", 2]]
+=> "julie@example.com"
+[8] pry(main)> f.follower.cycle
+NoMethodError: undefined method `cycle' for #<User:0x007fe910ce30a0>
+from /Users/meghannplunkett/.rvm/gems/ruby-2.0.0-p247@rails4/gems/activemodel-4.0.2/lib/active_model/attribute_methods.rb:439:in `method_missing'
+[9] pry(main)> f.followee
+  User Load (0.7ms)  SELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+=> #<User id: 1, name: nil, created_at: "2014-02-26 23:24:47", updated_at: "2014-02-26 23:24:47", email: "meghann@example.com", encrypted_password: "$2a$10$ITfcNFm6LyDjNF4K3YFbROB/82i2PZhAd.X4KTww3YVt...", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2014-02-26 23:24:47", last_sign_in_at: "2014-02-26 23:24:47", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", provider: nil, uid: nil>
+[10] pry(main)> f.followee.cycle
+NoMethodError: undefined method `cycle' for #<User:0x007fe9132ff630>
+from /Users/meghannplunkett/.rvm/gems/ruby-2.0.0-p247@rails4/gems/activemodel-4.0.2/lib/active_model/attribute_methods.rb:439:in `method_missing'
+[11] pry(main)> exit
+meghannplunkett@192:~/Documents/ga_wdi/Projects/bludkin  master
+$ rails c
+Loading development environment (Rails 4.0.2)
+[1] pry(main)> f
+NameError: undefined local variable or method `f' for main:Object
+from (pry):1:in `__pry__'
+[2] pry(main)> f= Follow.new
+=> #<Follow id: nil, follower_id: nil, followee_id: nil, created_at: nil, updated_at: nil>
+[3] pry(main)> Follow.all
+  Follow Load (0.8ms)  SELECT "follows".* FROM "follows"
+=> [#<Follow id: 1, follower_id: 2, followee_id: 1, created_at: "2014-02-26 23:59:14", updated_at: "2014-02-26 23:59:14">]
+[4] pry(main)> a =_
+=> [#<Follow id: 1, follower_id: 2, followee_id: 1, created_at: "2014-02-26 23:59:14", updated_at: "2014-02-26 23:59:14">]
+[5] pry(main)> a.followee
+NoMethodError: undefined method `followee' for #<ActiveRecord::Relation::ActiveRecord_Relation_Follow:0x007fa6659b8918>
+from /Users/meghannplunkett/.rvm/gems/ruby-2.0.0-p247@rails4/gems/activerecord-4.0.2/lib/active_record/relation/delegation.rb:121:in `method_missing'
+[6] pry(main)> a = Follower.first
+NameError: uninitialized constant Follower
+from (pry):6:in `__pry__'
+[7] pry(main)> a = Follow.first
+  Follow Load (0.9ms)  SELECT "follows".* FROM "follows" ORDER BY "follows"."id" ASC LIMIT 1
+=> #<Follow id: 1, follower_id: 2, followee_id: 1, created_at: "2014-02-26 23:59:14", updated_at: "2014-02-26 23:59:14">
+[8] pry(main)> a
+=> #<Follow id: 1, follower_id: 2, followee_id: 1, created_at: "2014-02-26 23:59:14", updated_at: "2014-02-26 23:59:14">
+[9] pry(main)> a.followee
+  User Load (58.1ms)  SELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+=> #<User id: 1, name: nil, created_at: "2014-02-26 23:24:47", updated_at: "2014-02-26 23:24:47", email: "meghann@example.com", encrypted_password: "$2a$10$ITfcNFm6LyDjNF4K3YFbROB/82i2PZhAd.X4KTww3YVt...", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2014-02-26 23:24:47", last_sign_in_at: "2014-02-26 23:24:47", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", provider: nil, uid: nil>
+[10] pry(main)> a.followee.cycle
+NoMethodError: undefined method `cycle' for #<User:0x007fa662382948>
+from /Users/meghannplunkett/.rvm/gems/ruby-2.0.0-p247@rails4/gems/activemodel-4.0.2/lib/active_model/attribute_methods.rb:439:in `method_missing'
+[11] pry(main)> a.followee.cycles
+[deprecated] I18n.enforce_available_locales will default to true in the future. If you really want to skip validation of your locale you can set I18n.enforce_available_locales = false to avoid this message.
+ActiveRecord::HasManyThroughSourceAssociationNotFoundError: Could not find the source association(s) :cycle or :cycles in model Follow. Try 'has_many :cycles, :through => :follows, :source => <name>'. Is it one of :follower or :followee?
+from /Users/meghannplunkett/.rvm/gems/ruby-2.0.0-p247@rails4/gems/activerecord-4.0.2/lib/active_record/reflection.rb:558:in `check_validity!'
+[12] pry(main)> exit
+meghannplunkett@192:~/Documents/ga_wdi/Projects/bludkin  master
+$ rails c
+Loading development environment (Rails 4.0.2)
+[1] pry(main)> f = Follow.first
+  Follow Load (1.0ms)  SELECT "follows".* FROM "follows" ORDER BY "follows"."id" ASC LIMIT 1
+=> #<Follow id: 1, follower_id: 2, followee_id: 1, created_at: "2014-02-26 23:59:14", updated_at: "2014-02-26 23:59:14">
+[2] pry(main)> f
+=> #<Follow id: 1, follower_id: 2, followee_id: 1, created_at: "2014-02-26 23:59:14", updated_at: "2014-02-26 23:59:14">
+[3] pry(main)> f.followee
+  User Load (3.7ms)  SELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+=> #<User id: 1, name: nil, created_at: "2014-02-26 23:24:47", updated_at: "2014-02-26 23:24:47", email: "meghann@example.com", encrypted_password: "$2a$10$ITfcNFm6LyDjNF4K3YFbROB/82i2PZhAd.X4KTww3YVt...", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2014-02-26 23:24:47", last_sign_in_at: "2014-02-26 23:24:47", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", provider: nil, uid: nil>
+[4] pry(main)> f.followee.cycles
+[deprecated] I18n.enforce_available_locales will default to true in the future. If you really want to skip validation of your locale you can set I18n.enforce_available_locales = false to avoid this message.
+ActiveRecord::HasManyThroughSourceAssociationNotFoundError: Could not find the source association(s) :cycle or :cycles in model Follow. Try 'has_many :cycles, :through => :follows, :source => <name>'. Is it one of :follower or :followee?
+from /Users/meghannplunkett/.rvm/gems/ruby-2.0.0-p247@rails4/gems/activerecord-4.0.2/lib/active_record/reflection.rb:558:in `check_validity!'
+[5] pry(main)> f.followee.cycle
+NoMethodError: undefined method `cycle' for #<User:0x007fbeb83f2950>
+from /Users/meghannplunkett/.rvm/gems/ruby-2.0.0-p247@rails4/gems/activemodel-4.0.2/lib/active_model/attribute_methods.rb:439:in `method_missing'
+[6] pry(main)> f.followee.user
+NoMethodError: undefined method `user' for #<User:0x007fbeb83f2950>
+from /Users/meghannplunkett/.rvm/gems/ruby-2.0.0-p247@rails4/gems/activemodel-4.0.2/lib/active_model/attribute_methods.rb:439:in `method_missing'
+[7] pry(main)> f.followee.
+[7] pry(main)* f.followee
+NoMethodError: undefined method `f' for #<User:0x007fbeb83f2950>
+from /Users/meghannplunkett/.rvm/gems/ruby-2.0.0-p247@rails4/gems/activemodel-4.0.2/lib/active_model/attribute_methods.rb:439:in `method_missing'
+[8] pry(main)> f.followee
+=> #<User id: 1, name: nil, created_at: "2014-02-26 23:24:47", updated_at: "2014-02-26 23:24:47", email: "meghann@example.com", encrypted_password: "$2a$10$ITfcNFm6LyDjNF4K3YFbROB/82i2PZhAd.X4KTww3YVt...", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2014-02-26 23:24:47", last_sign_in_at: "2014-02-26 23:24:47", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", provider: nil, uid: nil>
+[9] pry(main)> a = User.first
+  User Load (0.7ms)  SELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1
+=> #<User id: 1, name: nil, created_at: "2014-02-26 23:24:47", updated_at: "2014-02-26 23:24:47", email: "meghann@example.com", encrypted_password: "$2a$10$ITfcNFm6LyDjNF4K3YFbROB/82i2PZhAd.X4KTww3YVt...", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2014-02-26 23:24:47", last_sign_in_at: "2014-02-26 23:24:47", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", provider: nil, uid: nil>
+[10] pry(main)> a.cycle
+NoMethodError: undefined method `cycle' for #<User:0x007fbeb80cacc8>
+from /Users/meghannplunkett/.rvm/gems/ruby-2.0.0-p247@rails4/gems/activemodel-4.0.2/lib/active_model/attribute_methods.rb:439:in `method_missing'
+[11] pry(main)> a.cycles
+ActiveRecord::HasManyThroughSourceAssociationNotFoundError: Could not find the source association(s) :cycle or :cycles in model Follow. Try 'has_many :cycles, :through => :follows, :source => <name>'. Is it one of :follower or :followee?
+from /Users/meghannplunkett/.rvm/gems/ruby-2.0.0-p247@rails4/gems/activerecord-4.0.2/lib/active_record/reflection.rb:558:in `check_validity!'
+[12] pry(main)> exit
+meghannplunkett@192:~/Documents/ga_wdi/Projects/bludkin  master
+$ rails c
+Loading development environment (Rails 4.0.2)
+[1] pry(main)> a = User.first
+  User Load (1.3ms)  SELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1
+=> #<User id: 1, name: nil, created_at: "2014-02-26 23:24:47", updated_at: "2014-02-26 23:24:47", email: "meghann@example.com", encrypted_password: "$2a$10$ITfcNFm6LyDjNF4K3YFbROB/82i2PZhAd.X4KTww3YVt...", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2014-02-26 23:24:47", last_sign_in_at: "2014-02-26 23:24:47", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", provider: nil, uid: nil>
+[2] pry(main)> a.cycles
+  Cycle Load (5.1ms)  SELECT "cycles".* FROM "cycles" WHERE "cycles"."user_id" = $1  [["user_id", 1]]
+=> [#<Cycle id: 1, user_id: 1, start_date: nil, period_end_date: nil, cycle_end_date: nil, created_at: "2014-02-26 23:47:57", updated_at: "2014-02-26 23:47:57">,
+ #<Cycle id: 3, user_id: 1, start_date: nil, period_end_date: nil, cycle_end_date: nil, created_at: "2014-02-26 23:54:19", updated_at: "2014-02-26 23:54:19">]
+[3] pry(main)> a.follow
+NoMethodError: undefined method `follow' for #<User:0x007fca06538ae0>
+from /Users/meghannplunkett/.rvm/gems/ruby-2.0.0-p247@rails4/gems/activemodel-4.0.2/lib/active_model/attribute_methods.rb:439:in `method_missing'
+[4] pry(main)> a.follows
+  Follow Load (0.6ms)  SELECT "follows".* FROM "follows" WHERE "follows"."user_id" = $1  [[nil, 1]]
+PG::UndefinedColumn: ERROR:  column follows.user_id does not exist
+LINE 1: SELECT "follows".* FROM "follows"  WHERE "follows"."user_id"...
+                                                 ^
+: SELECT "follows".* FROM "follows"  WHERE "follows"."user_id" = $1
+=> #<ActiveRecord::Associations::CollectionProxy::ActiveRecord_Associations_CollectionProxy_Follow:0x3fe5030dacf0>
+[5] pry(main)> c = Cycle.first
+  Cycle Load (0.6ms)  SELECT "cycles".* FROM "cycles" ORDER BY "cycles"."id" ASC LIMIT 1
+=> #<Cycle id: 1, user_id: 1, start_date: nil, period_end_date: nil, cycle_end_date: nil, created_at: "2014-02-26 23:47:57", updated_at: "2014-02-26 23:47:57">
+[6] pry(main)> c.cycle_content
+NoMethodError: undefined method `cycle_content' for #<Cycle:0x007fca0624b378>
+from /Users/meghannplunkett/.rvm/gems/ruby-2.0.0-p247@rails4/gems/activemodel-4.0.2/lib/active_model/attribute_methods.rb:439:in `method_missing'
+[7] pry(main)> c.cycle_contents
+  CycleContent Load (0.7ms)  SELECT "cycle_contents".* FROM "cycle_contents" WHERE "cycle_contents"."cycle_id" = $1  [["cycle_id", 1]]
+=> []
+[8] pry(main)> c.cycle_contents.cycle_id
+NoMethodError: undefined method `cycle_id' for #<ActiveRecord::Associations::CollectionProxy []>
+from /Users/meghannplunkett/.rvm/gems/ruby-2.0.0-p247@rails4/gems/activerecord-4.0.2/lib/active_record/relation/delegation.rb:121:in `method_missing'
+[9] pry(main)> c.cycle_contents
+=> []
+[10] pry(main)> c.cycle_id
+NoMethodError: undefined method `cycle_id' for #<Cycle:0x007fca0624b378>
+from /Users/meghannplunkett/.rvm/gems/ruby-2.0.0-p247@rails4/gems/activemodel-4.0.2/lib/active_model/attribute_methods.rb:439:in `method_missing'
+[11] pry(main)> c
+=> #<Cycle id: 1, user_id: 1, start_date: nil, period_end_date: nil, cycle_end_date: nil, created_at: "2014-02-26 23:47:57", updated_at: "2014-02-26 23:47:57">
+[12] pry(main)> c.save
+   (0.2ms)  BEGIN
+   (0.3ms)  COMMIT
+=> true
+[13] pry(main)> c.cycle_contents
+=> []
+[14] pry(main)> User.first
+  User Load (0.7ms)  SELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1
+=> #<User id: 1, name: nil, created_at: "2014-02-26 23:24:47", updated_at: "2014-02-26 23:24:47", email: "meghann@example.com", encrypted_password: "$2a$10$ITfcNFm6LyDjNF4K3YFbROB/82i2PZhAd.X4KTww3YVt...", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2014-02-26 23:24:47", last_sign_in_at: "2014-02-26 23:24:47", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", provider: nil, uid: nil>
+[15] pry(main)> u = User.first
+  User Load (0.6ms)  SELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1
+=> #<User id: 1, name: nil, created_at: "2014-02-26 23:24:47", updated_at: "2014-02-26 23:24:47", email: "meghann@example.com", encrypted_password: "$2a$10$ITfcNFm6LyDjNF4K3YFbROB/82i2PZhAd.X4KTww3YVt...", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2014-02-26 23:24:47", last_sign_in_at: "2014-02-26 23:24:47", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", provider: nil, uid: nil>
+[16] pry(main)> u.cycle
+NoMethodError: undefined method `cycle' for #<User:0x007fca064c26b0>
+from /Users/meghannplunkett/.rvm/gems/ruby-2.0.0-p247@rails4/gems/activemodel-4.0.2/lib/active_model/attribute_methods.rb:439:in `method_missing'
+[17] pry(main)> u.cycles
+  Cycle Load (0.6ms)  SELECT "cycles".* FROM "cycles" WHERE "cycles"."user_id" = $1  [["user_id", 1]]
+=> [#<Cycle id: 1, user_id: 1, start_date: nil, period_end_date: nil, cycle_end_date: nil, created_at: "2014-02-26 23:47:57", updated_at: "2014-02-26 23:47:57">,
+ #<Cycle id: 3, user_id: 1, start_date: nil, period_end_date: nil, cycle_end_date: nil, created_at: "2014-02-26 23:54:19", updated_at: "2014-02-26 23:54:19">]
+[18] pry(main)> u.cycles.cycle_contents
+NoMethodError: undefined method `cycle_contents' for #<ActiveRecord::Associations::CollectionProxy::ActiveRecord_Associations_CollectionProxy_Cycle:0x007fca0651b940>
+from /Users/meghannplunkett/.rvm/gems/ruby-2.0.0-p247@rails4/gems/activerecord-4.0.2/lib/active_record/relation/delegation.rb:121:in `method_missing'
+[19] pry(main)> u.cycles.cycle_content
+NoMethodError: undefined method `cycle_content' for #<ActiveRecord::Associations::CollectionProxy::ActiveRecord_Associations_CollectionProxy_Cycle:0x007fca0651b940>
+from /Users/meghannplunkett/.rvm/gems/ruby-2.0.0-p247@rails4/gems/activerecord-4.0.2/lib/active_record/relation/delegation.rb:121:in `method_missing'
+[20] pry(main)> u.cycles.cycle_contents
+NoMethodError: undefined method `cycle_contents' for #<ActiveRecord::Associations::CollectionProxy::ActiveRecord_Associations_CollectionProxy_Cycle:0x007fca0651b940>
+from /Users/meghannplunkett/.rvm/gems/ruby-2.0.0-p247@rails4/gems/activerecord-4.0.2/lib/active_record/relation/delegation.rb:121:in `method_missing'
+[21] pry(main)> u.cycles
+=> [#<Cycle id: 1, user_id: 1, start_date: nil, period_end_date: nil, cycle_end_date: nil, created_at: "2014-02-26 23:47:57", updated_at: "2014-02-26 23:47:57">,
+ #<Cycle id: 3, user_id: 1, start_date: nil, period_end_date: nil, cycle_end_date: nil, created_at: "2014-02-26 23:54:19", updated_at: "2014-02-26 23:54:19">]
+[22] pry(main)> u.cycles.first
+=> #<Cycle id: 1, user_id: 1, start_date: nil, period_end_date: nil, cycle_end_date: nil, created_at: "2014-02-26 23:47:57", updated_at: "2014-02-26 23:47:57">
+[23] pry(main)> u.cycles.first.cycle_contents
+  CycleContent Load (0.5ms)  SELECT "cycle_contents".* FROM "cycle_contents" WHERE "cycle_contents"."cycle_id" = $1  [["cycle_id", 1]]
+=> []
+[24] pry(main)> cc = Cycle_Contents.new
+NameError: uninitialized constant Cycle_Contents
+from (pry):24:in `__pry__'
+[25] pry(main)> cc = Cycle_contents.new
+NameError: uninitialized constant Cycle_contents
+from (pry):25:in `__pry__'
+[26] pry(main)> cc = CycleContents.new
+NameError: uninitialized constant CycleContents
+from (pry):26:in `__pry__'
+[27] pry(main)> cc = cycle_contents.new
+NameError: undefined local variable or method `cycle_contents' for main:Object
+from (pry):27:in `__pry__'
+[28] pry(main)> cc = Cycle_Contents.new
+NameError: uninitialized constant Cycle_Contents
+from (pry):28:in `__pry__'
+[29] pry(main)> cc = Cycle_Content.new
+RuntimeError: Circular dependency detected while autoloading constant Cycle_Content
+from /Users/meghannplunkett/.rvm/gems/ruby-2.0.0-p247@rails4/gems/activesupport-4.0.2/lib/active_support/dependencies.rb:461:in `load_missing_constant'
+[30] pry(main)> cc = Cycle_content.new
+RuntimeError: Circular dependency detected while autoloading constant Cycle_content
+from /Users/meghannplunkett/.rvm/gems/ruby-2.0.0-p247@rails4/gems/activesupport-4.0.2/lib/active_support/dependencies.rb:461:in `load_missing_constant'
+[31] pry(main)> cc = CycleContent.new
+=> #<CycleContent id: nil, mood: nil, cycle_id: nil, user_id: nil, pain: nil, note: nil, created_at: nil, updated_at: nil>
+[32] pry(main)> cc.cycle_id = 1
+=> 1
+[33] pry(main)> cc.cycle
+  Cycle Load (0.8ms)  SELECT "cycles".* FROM "cycles" WHERE "cycles"."id" = $1 ORDER BY "cycles"."id" ASC LIMIT 1  [["id", 1]]
+=> #<Cycle id: 1, user_id: 1, start_date: nil, period_end_date: nil, cycle_end_date: nil, created_at: "2014-02-26 23:47:57", updated_at: "2014-02-26 23:47:57">
+[34] pry(main)> cc.cycle.user
+  User Load (0.8ms)  SELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+=> #<User id: 1, name: nil, created_at: "2014-02-26 23:24:47", updated_at: "2014-02-26 23:24:47", email: "meghann@example.com", encrypted_password: "$2a$10$ITfcNFm6LyDjNF4K3YFbROB/82i2PZhAd.X4KTww3YVt...", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2014-02-26 23:24:47", last_sign_in_at: "2014-02-26 23:24:47", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", provider: nil, uid: nil>
+[35] pry(main)> cc.cycle.user.email
+=> "meghann@example.com"
+[36] pry(main)> a = Follow.first
+  Follow Load (0.5ms)  SELECT "follows".* FROM "follows" ORDER BY "follows"."id" ASC LIMIT 1
+=> #<Follow id: 1, follower_id: 2, followee_id: 1, created_at: "2014-02-26 23:59:14", updated_at: "2014-02-26 23:59:14">
+[37] pry(main)> a.followee
+  User Load (0.6ms)  SELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+=> #<User id: 1, name: nil, created_at: "2014-02-26 23:24:47", updated_at: "2014-02-26 23:24:47", email: "meghann@example.com", encrypted_password: "$2a$10$ITfcNFm6LyDjNF4K3YFbROB/82i2PZhAd.X4KTww3YVt...", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2014-02-26 23:24:47", last_sign_in_at: "2014-02-26 23:24:47", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", provider: nil, uid: nil>
+[38] pry(main)> a.followee.cycle
+NoMethodError: undefined method `cycle' for #<User:0x007fca03edd670>
+from /Users/meghannplunkett/.rvm/gems/ruby-2.0.0-p247@rails4/gems/activemodel-4.0.2/lib/active_model/attribute_methods.rb:439:in `method_missing'
+[39] pry(main)> a.followee.cycles
+  Cycle Load (0.6ms)  SELECT "cycles".* FROM "cycles" WHERE "cycles"."user_id" = $1  [["user_id", 1]]
+=> [#<Cycle id: 1, user_id: 1, start_date: nil, period_end_date: nil, cycle_end_date: nil, created_at: "2014-02-26 23:47:57", updated_at: "2014-02-26 23:47:57">,
+ #<Cycle id: 3, user_id: 1, start_date: nil, period_end_date: nil, cycle_end_date: nil, created_at: "2014-02-26 23:54:19", updated_at: "2014-02-26 23:54:19">]
+[40] pry(main)>
