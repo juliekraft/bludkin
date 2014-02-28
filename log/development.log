@@ -31851,3 +31851,4 @@ ActionController::RoutingError (No route matches [GET] "/assets/underscore-min.m
 =======
 >>>>>>> 4bd429961b19d0973a7cfc8e55701f3ce8a8885c
 >>>>>>> 83d3b4cf7098c9297bb9f0af150f610d5d30868e
+  [1m[36mUser Load (24.1ms)[0m  [1mSELECT "users".* FROM "users"[0m

@@ -19,4 +19,5 @@
 //= require cycle
 //= require scripts
 //= require turbolinks
+//= require follow
 
