@@ -3,6 +3,16 @@ var calendar_options = {
   dayClick: function(date, allDay, jsEvent, view) {
     // console.log('date', date)
     $('#start-date-input').val(date)
+
+    // changes background color of day on calendar
+    $('#color').removeAttr('id')
+    _.each($(this).attr('id', 'color'));
+
+    // testing to find all days on calendar with style tag
+    // _.findWhere(
+    //   // console.log($('td'))
+    //   ($('td')), ($("td").inlineStyle("background-color"))
+    // )
     
 
   // Cycle.new({user_id: this.user.user_id, start_date: date});
@@ -13,11 +23,10 @@ var calendar_options = {
   // $(this).next().next().css('background-color', '#67090C');
   // $(this).next().next().next().css('background-color', '#67090C');
   // }
-  // eventRender: function(event, element) {
-  //     element.qtip({
-  //         content: event.description
-  //     })
-}
+  },
+  eventRender: function(event, element) {
+
+  }
 }
 
   // $('td').on('click', function(data){
