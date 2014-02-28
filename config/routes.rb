@@ -11,6 +11,8 @@ Bludkin::Application.routes.draw do
 
   root to: 'home#index'
 
+  get '/home/friend' => 'home#friend'
+
   resources :cycles
 
   devise_scope :user do

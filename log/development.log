@@ -31851,6 +31851,7 @@ ActionController::RoutingError (No route matches [GET] "/assets/underscore-min.m
 =======
 >>>>>>> 4bd429961b19d0973a7cfc8e55701f3ce8a8885c
 >>>>>>> 83d3b4cf7098c9297bb9f0af150f610d5d30868e
+<<<<<<< HEAD
 
 
 Started GET "/" for 127.0.0.1 at 2014-02-28 11:37:43 -0500
@@ -32633,3 +32634,6 @@ Started GET "/assets/logo.png" for 127.0.0.1 at 2014-02-28 14:52:44 -0500
   [1m[36mCycle Load (0.6ms)[0m  [1mSELECT "cycles".* FROM "cycles" ORDER BY "cycles"."id" ASC LIMIT 1[0m
   [1m[35mCycle Load (0.6ms)[0m  SELECT "cycles".* FROM "cycles" ORDER BY "cycles"."id" DESC LIMIT 1
   [1m[36mUser Load (1.1ms)[0m  [1mSELECT "users".* FROM "users"[0m
+=======
+  [1m[36mUser Load (24.1ms)[0m  [1mSELECT "users".* FROM "users"[0m
+>>>>>>> 461c9960ffcef67a8e1504403dc4929c500cb8de
