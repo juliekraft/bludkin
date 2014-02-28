@@ -8,15 +8,6 @@ var calendar_options = {
     $('#color').removeAttr('id')
     _.each($(this).attr('id', 'color'));
 
-    // testing to find all days on calendar with style tag
-    // _.findWhere(
-    //   // console.log($('td'))
-    //   ($('td')), ($("td").inlineStyle("background-color"))
-    // )
-    
-
-  // Cycle.new({user_id: this.user.user_id, start_date: date});
-
   //UGLY, FIX THIS
   // $(this).css('background-color', '#67090C');
   // $(this).next().css('background-color', '#67090C');
@@ -51,6 +42,13 @@ var App = Backbone.Router.extend({
     ui.$el.append(home.render().$el)
     $('#calendar').fullCalendar(calendar_options)
 
+    // on click 'archive' callback
+    $('#archive').on('click', function(e){
+      e.preventDefault();
+      console.log("archive clicked")
+      c = new Cycle()
+    })
+ 
 
   },
 
@@ -125,6 +123,12 @@ UI.Home = Backbone.View.extend({
 
 
 })
+
+
+
+
+
+
 
 
 
