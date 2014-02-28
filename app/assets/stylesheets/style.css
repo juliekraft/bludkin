@@ -21,6 +21,7 @@ nav {
 
 /* Classes */
 
+
 .button {
   background-color: #7D0B0F;
 
@@ -33,3 +34,31 @@ nav {
 .button:focus {
   background-color: #7D0B0F;
 }
+
+
+    nav {
+    background-color: #7D0B0F;
+    height: 60px;
+    list-style-type:none;
+    margin:0;
+    padding:10px;
+    margin-top: 0px;
+
+    }
+
+    .links {
+      display: inline;
+    }
+
+   .logo {
+      width: 100px;
+    }
+/*  nav {
+    display: inline;
+  }*/
+
+  #color {
+    background-color: #67090C;
+  }
+
+
