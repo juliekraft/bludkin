@@ -1,30 +1,24 @@
 var calendar_options = {
-  // put your options and callbacks here
   dayClick: function(date, allDay, jsEvent, view) {
     // console.log('date', date)
+    // console.log('allDay', allDay)
+    // console.log('jsEvent', jsEvent)
+    // console.log('view', view)
+
     $('#start-date-input').val(date)
 
     // changes background color of day on calendar
     $('#color').removeAttr('id')
     _.each($(this).attr('id', 'color'));
 
-  //UGLY, FIX THIS
-  // $(this).css('background-color', '#67090C');
-  // $(this).next().css('background-color', '#67090C');
-  // $(this).next().next().css('background-color', '#67090C');
-  // $(this).next().next().next().css('background-color', '#67090C');
-  // }
-  },
-  eventRender: function(event, element) {
-
+    //UGLY, FIX THIS
+    // $(this).css('background-color', '#67090C');
+    // $(this).next().css('background-color', '#67090C');
+    // $(this).next().next().css('background-color', '#67090C');
+    // $(this).next().next().next().css('background-color', '#67090C');
+    // }
   }
 }
-
-  // $('td').on('click', function(data){
-  //   console.log("TD day clicked")
-  //   console.log("data", data)
-  // })
-
 
 var App = Backbone.Router.extend({
   routes: {
@@ -42,11 +36,13 @@ var App = Backbone.Router.extend({
     ui.$el.append(home.render().$el)
     $('#calendar').fullCalendar(calendar_options)
 
-    // on click 'archive' callback
+    // on click 'archive' callback, create instance of Cycle
+    // using submitCallback is breaking everything
     $('#archive').on('click', function(e){
-      e.preventDefault();
+    // submitCallback: function(e){
+      e.preventDefault()
       console.log("archive clicked")
-      c = new Cycle()
+      var cycle = new Cycle({'start_date': ('#start-date-input').val})
     })
  
 
@@ -119,8 +115,10 @@ UI.Home = Backbone.View.extend({
    render: function(){
     this.$el.html(this.template({ }))
     return this;
+  },
+  events: {
+    'click #archive' : 'submitCallback' // syntax?  or App.home.submitCallback?
   }
-
 
 })
 
@@ -133,36 +131,109 @@ UI.Home = Backbone.View.extend({
 
 
 
-// var Cycle = Backbone.Model.extend({
-//   url: function(){
-//     if(this.get("id")){
-//       return "/cycles/" + this.get("id")
-//     } else {
-//       return "/cycles"
-//     }
-//   }
-// })
+var Cycle = Backbone.Model.extend({
+  url: function(){
+    if(this.get("id")){
+      return "/cycles/" + this.get("id")
+    } else {
+      return "/cycles"
+    }
+  }
+})
 
-// var CycleView = Backbone.View.extend({
-//   initialize: function(){
+var CycleView = Backbone.View.extend({
+  initialize: function(){
 
-//   },
-//   template: function(){
+  },
+  template: function(){
 
-//   },
-//   render: function(){
+  },
+  render: function(){
 
-//   }
-// })
+  }
+})
 
-// var CycleCollection = Backbone.Collection.extend({
+var CycleCollection = Backbone.Collection.extend({
 
-// })
+})
 
-// var CycleCollectionView = Backbone.View.extend({
+var CycleCollectionView = Backbone.View.extend({
 
-// })
+})
 
-// var FormView = Backbone.View.extend({
 
-// })
+var FormView = Backbone.View.extend({
+  // below copied to UI.Home
+  // events: {
+  //   'click #archive' : 'submitCallback' // syntax?  or App.home.submitCallback?
+  // }
+})
+
+
+
+
+
+
+
+
+// DINOSAUR WEEKEND FORM VIEW FOR REFERENCE
+var FormView = Backbone.View.extend ({
+  initialize: function(){
+    console.log("FormView initialized!")
+    this.$('#dinosaur_update_button').hide();
+  },
+  el: function(){
+    return $('#dinosaur_form');
+  },
+  submitCallback: function(e){
+    e.preventDefault();
+
+    var array_of_dinosaur_data = this.$el.serializeArray();
+
+    // creating an instance of dinosaur and placing it in the collection
+    list_view.collection.create({
+      name: array_of_dinosaur_data[0].value,
+      species: array_of_dinosaur_data[1].value,
+      gender: array_of_dinosaur_data[2].value
+    });
+
+    this.resetValues();
+  },
+  resetValues: function(){
+    _.each(this.$('input'), function(input){
+      $(input).val('');
+    })
+  },
+  edit: function(model){
+    this.$('#dinosaur_create_button').hide();
+    this.$('#dinosaur_update_button').show();
+
+    this.$('#dinosaur_name').val(model.get('name'));
+    this.$('#dinosaur_species').val(model.get('species'));
+    this.$('#dinosaur_gender').val(model.get('gender'));
+
+    this.$('#dinosaur_update_button').on('click', function(e){
+      e.preventDefault();
+
+      model.set({
+        'name': form_view.$('#dinosaur_name').val(),
+        'species': form_view.$('#dinosaur_species').val(),
+        'gender': form_view.$('#dinosaur_gender').val()
+      })
+
+      model.save({}, {
+        url: "/dinosaurs/"+model.id
+      })
+
+      form_view.$('#dinosaur_create_button').show();
+      form_view.$('#dinosaur_update_button').hide();
+
+      $(this).off('click');
+    })
+
+  },
+  events: {
+    "click #dinosaur_create_button" : "submitCallback",
+    "click #dinosaur_update_button" : "updateCallback"
+  }
+})

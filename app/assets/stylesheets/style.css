@@ -1,31 +1,35 @@
-/*.devise-input {
-  width: 300px;
-  }*/
+body {
+  background-color: #F9F1DC;
+}
 
-  .button {
-    background-color: #7D0B0F;
+h1 {
+  color: #7D0B0F;
+  font-weight: bold;
+  font-size: 50px;
+  font-family: helvetica;
+}
 
-  }
+nav {
+  display: inline;
+}
 
-  .button:hover{
-    background-color: #8C635B;
-  }
+/* IDs */
 
-  body {
-    background-color: #F9F1DC;
-  }
+#color {
+  background-color: #67090C;
+}
 
-  h1 {
-    color: #7D0B0F;
-    font-weight: bold;
-    font-size: 50px;
-    font-family: helvetica;
-  }
+/* Classes */
 
-  nav {
-    display: inline;
-  }
+.button {
+  background-color: #7D0B0F;
 
-  #color {
-    background-color: #67090C;
-  }
+}
+
+.button:hover { 
+  background-color: #8C635B;
+}
+
+.button:focus {
+  background-color: #7D0B0F;
+}
