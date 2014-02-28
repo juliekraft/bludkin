@@ -24,16 +24,25 @@ var App = Backbone.Router.extend({
   routes: {
     "": "home", // friends network
     "calendar" : "calendar"
-    // "search" : "search",
+    // "allFriends" : "friends",
     // "stats" : "stats"
   },
 
   home: function(){
     app.current_page = "home"
-    if (ui) ui.remove()
+     if (ui) ui.remove()
     var ui = new UI()
     var home = new UI.Home()
     ui.$el.append(home.render().$el)
+    
+  },
+
+  calendar: function(){
+    app.current_page = "calendar"
+    if (ui) ui.remove()
+    var ui = new UI()
+    var cal = new UI.Cal()
+    ui.$el.append(cal.render().$el)
     $('#calendar').fullCalendar(calendar_options)
 
     // on click 'archive' callback, create instance of Cycle
@@ -46,14 +55,14 @@ var App = Backbone.Router.extend({
     // })
  
 
-  },
-
-  calendar: function(){
-    app.current_page = "calendar"
-    if (ui) ui.remove()
-    var ui = new UI()
-    $('#calendar').fullCalendar(calendar_options)
   }
+
+//   calendar: function(){
+//     app.current_page = "calendar"
+//     if (ui) ui.remove()
+//     var ui = new UI()
+//     $('#calendar').fullCalendar(calendar_options)
+//   }
 })
 
 var UI = Backbone.View.extend({
@@ -103,12 +112,12 @@ UI.NavBar = Backbone.View.extend({
 
 })
 
-UI.Home = Backbone.View.extend({
+UI.Cal = Backbone.View.extend({
   initialize: function(){
 
   },
   template: function(attributes){
-    var source = $('#home-template').html()
+    var source = $('#calendar-template').html()
       var template = Handlebars.compile(source)
       return template(attributes)
   }, 
