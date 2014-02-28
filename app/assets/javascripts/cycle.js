@@ -1,22 +1,29 @@
 var calendar_options = {
   // put your options and callbacks here
   dayClick: function(date, allDay, jsEvent, view) {
+    // console.log('date', date)
+    $('#start-date-input').val(date)
 
-  // Cycle.new({user_id: this.user.user_id, start_date: date});
+    // changes background color of day on calendar
+    $('#color').removeAttr('id')
+    _.each($(this).attr('id', 'color'));
 
   //UGLY, FIX THIS
-  $(this).css('background-color', '#67090C');
-  $(this).next().css('background-color', '#67090C');
-  $(this).next().next().css('background-color', '#67090C');
-  $(this).next().next().next().css('background-color', '#67090C');
-  }
-  // eventRender: function(event, element) {
-  //     element.qtip({
-  //         content: event.description
-  //     })
+  // $(this).css('background-color', '#67090C');
+  // $(this).next().css('background-color', '#67090C');
+  // $(this).next().next().css('background-color', '#67090C');
+  // $(this).next().next().next().css('background-color', '#67090C');
   // }
+  },
+  eventRender: function(event, element) {
+
+  }
 }
 
+  // $('td').on('click', function(data){
+  //   console.log("TD day clicked")
+  //   console.log("data", data)
+  // })
 
 
 var App = Backbone.Router.extend({
@@ -35,6 +42,13 @@ var App = Backbone.Router.extend({
     ui.$el.append(home.render().$el)
     $('#calendar').fullCalendar(calendar_options)
 
+    // on click 'archive' callback
+    $('#archive').on('click', function(e){
+      e.preventDefault();
+      console.log("archive clicked")
+      c = new Cycle()
+    })
+ 
 
   },
 
@@ -109,6 +123,12 @@ UI.Home = Backbone.View.extend({
 
 
 })
+
+
+
+
+
+
 
 
 

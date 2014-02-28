@@ -1,26 +1,27 @@
 /*.devise-input {
   width: 300px;
-}*/
+  }*/
 
-.button {
-  background-color: #7D0B0F;
+  .button {
+    background-color: #7D0B0F;
 
-}
+  }
 
-.button:hover{
-        background-color: #8C635B;
-    }
+  .button:hover{
+    background-color: #8C635B;
+  }
 
-    body {
-      background-color: #F9F1DC;
-    }
+  body {
+    background-color: #F9F1DC;
+  }
 
-    h1 {
-      color: #7D0B0F;
-      font-weight: bold;
-      font-size: 50px;
-      font-family: helvetica;
-    }
+  h1 {
+    color: #7D0B0F;
+    font-weight: bold;
+    font-size: 50px;
+    font-family: helvetica;
+  }
+
 
     nav {
     background-color: #7D0B0F;
@@ -39,3 +40,11 @@
    /* .logo {
       width: 100px;
     }*/
+  nav {
+    display: inline;
+  }
+
+  #color {
+    background-color: #67090C;
+  }
+>>>>>>> 4bd429961b19d0973a7cfc8e55701f3ce8a8885c
