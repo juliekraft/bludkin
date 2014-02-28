@@ -38,12 +38,12 @@ var App = Backbone.Router.extend({
 
     // on click 'archive' callback, create instance of Cycle
     // using submitCallback is breaking everything
-    $('#archive').on('click', function(e){
-    // submitCallback: function(e){
-      e.preventDefault()
-      console.log("archive clicked")
-      var cycle = new Cycle({'start_date': ('#start-date-input').val})
-    })
+    // $('#archive').on('click', function(e){
+    // // submitCallback: function(e){
+    //   e.preventDefault()
+    //   console.log("archive clicked")
+    //   var cycle = new Cycle({'start_date': ('#start-date-input').val})
+    // })
  
 
   },
@@ -103,7 +103,7 @@ UI.NavBar = Backbone.View.extend({
 
 })
 
-UI.Home = Backbone.View.extend({
+UI.Body = Backbone.View.extend({
   initialize: function(){
 
   },
@@ -118,7 +118,18 @@ UI.Home = Backbone.View.extend({
   },
   events: {
     'click #archive' : 'submitCallback' // syntax?  or App.home.submitCallback?
-  }
+  },
+
+  // CALLBACKS
+      // on click 'archive' callback, create instance of Cycle
+    // using submitCallback is breaking everything
+    // $('#archive').on('click', function(e){
+    submitCallback: function(e){
+      e.preventDefault()
+      console.log("archive clicked")
+      var cycle = new Cycle({'start_date': this.$('#start-date-input').val()})
+      console.log(cycle, "model!")
+    }
 
 })
 
@@ -177,63 +188,63 @@ var FormView = Backbone.View.extend({
 
 
 // DINOSAUR WEEKEND FORM VIEW FOR REFERENCE
-var FormView = Backbone.View.extend ({
-  initialize: function(){
-    console.log("FormView initialized!")
-    this.$('#dinosaur_update_button').hide();
-  },
-  el: function(){
-    return $('#dinosaur_form');
-  },
-  submitCallback: function(e){
-    e.preventDefault();
+// var FormView = Backbone.View.extend ({
+//   initialize: function(){
+//     console.log("FormView initialized!")
+//     this.$('#dinosaur_update_button').hide();
+//   },
+//   el: function(){
+//     return $('#dinosaur_form');
+//   },
+//   submitCallback: function(e){
+//     e.preventDefault();
 
-    var array_of_dinosaur_data = this.$el.serializeArray();
+//     var array_of_dinosaur_data = this.$el.serializeArray();
 
-    // creating an instance of dinosaur and placing it in the collection
-    list_view.collection.create({
-      name: array_of_dinosaur_data[0].value,
-      species: array_of_dinosaur_data[1].value,
-      gender: array_of_dinosaur_data[2].value
-    });
+//     // creating an instance of dinosaur and placing it in the collection
+//     list_view.collection.create({
+//       name: array_of_dinosaur_data[0].value,
+//       species: array_of_dinosaur_data[1].value,
+//       gender: array_of_dinosaur_data[2].value
+//     });
 
-    this.resetValues();
-  },
-  resetValues: function(){
-    _.each(this.$('input'), function(input){
-      $(input).val('');
-    })
-  },
-  edit: function(model){
-    this.$('#dinosaur_create_button').hide();
-    this.$('#dinosaur_update_button').show();
+//     this.resetValues();
+//   },
+//   resetValues: function(){
+//     _.each(this.$('input'), function(input){
+//       $(input).val('');
+//     })
+//   },
+//   edit: function(model){
+//     this.$('#dinosaur_create_button').hide();
+//     this.$('#dinosaur_update_button').show();
 
-    this.$('#dinosaur_name').val(model.get('name'));
-    this.$('#dinosaur_species').val(model.get('species'));
-    this.$('#dinosaur_gender').val(model.get('gender'));
+//     this.$('#dinosaur_name').val(model.get('name'));
+//     this.$('#dinosaur_species').val(model.get('species'));
+//     this.$('#dinosaur_gender').val(model.get('gender'));
 
-    this.$('#dinosaur_update_button').on('click', function(e){
-      e.preventDefault();
+//     this.$('#dinosaur_update_button').on('click', function(e){
+//       e.preventDefault();
 
-      model.set({
-        'name': form_view.$('#dinosaur_name').val(),
-        'species': form_view.$('#dinosaur_species').val(),
-        'gender': form_view.$('#dinosaur_gender').val()
-      })
+//       model.set({
+//         'name': form_view.$('#dinosaur_name').val(),
+//         'species': form_view.$('#dinosaur_species').val(),
+//         'gender': form_view.$('#dinosaur_gender').val()
+//       })
 
-      model.save({}, {
-        url: "/dinosaurs/"+model.id
-      })
+//       model.save({}, {
+//         url: "/dinosaurs/"+model.id
+//       })
 
-      form_view.$('#dinosaur_create_button').show();
-      form_view.$('#dinosaur_update_button').hide();
+//       form_view.$('#dinosaur_create_button').show();
+//       form_view.$('#dinosaur_update_button').hide();
 
-      $(this).off('click');
-    })
+//       $(this).off('click');
+//     })
 
-  },
-  events: {
-    "click #dinosaur_create_button" : "submitCallback",
-    "click #dinosaur_update_button" : "updateCallback"
-  }
-})
+//   },
+//   events: {
+//     "click #dinosaur_create_button" : "submitCallback",
+//     "click #dinosaur_update_button" : "updateCallback"
+//   }
+// })

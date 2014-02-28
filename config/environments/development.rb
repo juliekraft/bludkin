@@ -29,4 +29,7 @@ Bludkin::Application.configure do
 
   #devise
   config.action_mailer.default_url_options = { :host => "localhost:3000" }
+
+  config.assets.cache_store = :null_store
+  config.sass.cache = false
 end
