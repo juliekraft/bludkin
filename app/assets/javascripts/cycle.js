@@ -126,6 +126,7 @@ UI.Home = Backbone.View.extend({
     // $('#archive').on('click', function(e){
   archiveCallback: function(e){
     e.preventDefault()
+
     //make date follow Ruby conventions
     var months = {
       'Jan' : '01',
@@ -152,13 +153,20 @@ UI.Home = Backbone.View.extend({
     var date = rdate.join('');
     console.log("date", date);
 
-    //instantiate new Cycle with start_date filled in
     //check if previous cycle exists and add cycle_end_date to previous cycle
-    //update calendar -- highlight four days w/ red color
+    // so ruby
+    // if (Cycle.last) {
+    //   var last_cycle = Cycle.last;
+    //   last_cycle({'cycle_end_date': date});
+    // }
+
+    //instantiate new Cycle with start_date filled in
     console.log("archive clicked")
     var cycle = new Cycle({'start_date': date})
-    console.log(cycle, "cycle model!")
+    cycle.save()
+    console.log(cycle, 'cycle')
 
+    //update calendar -- highlight four days w/ red color
 
   }
 
@@ -215,70 +223,6 @@ var FormView = Backbone.View.extend({
 
 
 
-
-
-
-// DINOSAUR WEEKEND FORM VIEW FOR REFERENCE
-// var FormView = Backbone.View.extend ({
-//   initialize: function(){
-//     console.log("FormView initialized!")
-//     this.$('#dinosaur_update_button').hide();
-//   },
-//   el: function(){
-//     return $('#dinosaur_form');
-//   },
-//   submitCallback: function(e){
-//     e.preventDefault();
-
-//     var array_of_dinosaur_data = this.$el.serializeArray();
-
-//     // creating an instance of dinosaur and placing it in the collection
-//     list_view.collection.create({
-//       name: array_of_dinosaur_data[0].value,
-//       species: array_of_dinosaur_data[1].value,
-//       gender: array_of_dinosaur_data[2].value
-//     });
-
-//     this.resetValues();
-//   },
-//   resetValues: function(){
-//     _.each(this.$('input'), function(input){
-//       $(input).val('');
-//     })
-//   },
-//   edit: function(model){
-//     this.$('#dinosaur_create_button').hide();
-//     this.$('#dinosaur_update_button').show();
-
-//     this.$('#dinosaur_name').val(model.get('name'));
-//     this.$('#dinosaur_species').val(model.get('species'));
-//     this.$('#dinosaur_gender').val(model.get('gender'));
-
-//     this.$('#dinosaur_update_button').on('click', function(e){
-//       e.preventDefault();
-
-//       model.set({
-//         'name': form_view.$('#dinosaur_name').val(),
-//         'species': form_view.$('#dinosaur_species').val(),
-//         'gender': form_view.$('#dinosaur_gender').val()
-//       })
-
-//       model.save({}, {
-//         url: "/dinosaurs/"+model.id
-//       })
-
-//       form_view.$('#dinosaur_create_button').show();
-//       form_view.$('#dinosaur_update_button').hide();
-
-//       $(this).off('click');
-//     })
-
-//   },
-//   events: {
-//     "click #dinosaur_create_button" : "submitCallback",
-//     "click #dinosaur_update_button" : "updateCallback"
-//   }
-// })
 
 
 
