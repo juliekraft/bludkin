@@ -28,7 +28,7 @@
     height: 60px;
     list-style-type:none;
     margin:0;
-    padding:0;
+    padding:10px;
     margin-top: 0px;
 
     }
@@ -37,14 +37,14 @@
       display: inline;
     }
 
-   /* .logo {
+   .logo {
       width: 100px;
-    }*/
-  nav {
+    }
+/*  nav {
     display: inline;
-  }
+  }*/
 
   #color {
     background-color: #67090C;
   }
->>>>>>> 4bd429961b19d0973a7cfc8e55701f3ce8a8885c
+
