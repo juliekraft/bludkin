@@ -103,7 +103,7 @@ UI.NavBar = Backbone.View.extend({
 
 })
 
-UI.Body = Backbone.View.extend({
+UI.Home = Backbone.View.extend({
   initialize: function(){
 
   },
