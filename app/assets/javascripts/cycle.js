@@ -117,19 +117,50 @@ UI.Home = Backbone.View.extend({
     return this;
   },
   events: {
-    'click #archive' : 'submitCallback' // syntax?  or App.home.submitCallback?
+    'click #archive' : 'archiveCallback' // syntax?  or App.home.submitCallback?
   },
 
   // CALLBACKS
       // on click 'archive' callback, create instance of Cycle
     // using submitCallback is breaking everything
     // $('#archive').on('click', function(e){
-    submitCallback: function(e){
-      e.preventDefault()
-      console.log("archive clicked")
-      var cycle = new Cycle({'start_date': this.$('#start-date-input').val()})
-      console.log(cycle, "model!")
-    }
+  archiveCallback: function(e){
+    e.preventDefault()
+    //make date follow Ruby conventions
+    var months = {
+      'Jan' : '01',
+      'Feb' : '02',
+      'Mar' : '03',
+      'Apr' : '04',
+      'May' : '05',
+      'Jun' : '06',
+      'Jul' : '07',
+      'Aug' : '08',
+      'Sep' : '09',
+      'Oct' : '10',
+      'Nov' : '11',
+      'Dec' : '12'
+    };
+
+    var cdate = this.$('#start-date-input').val()
+    var rdate = [];
+    rdate.push(cdate.split(' ')[3]);
+    rdate.push('-');
+    rdate.push(months[cdate.split(' ')[1]]);
+    rdate.push('-');
+    rdate.push(cdate.split(' ')[2]);
+    var date = rdate.join('');
+    console.log("date", date);
+
+    //instantiate new Cycle with start_date filled in
+    //check if previous cycle exists and add cycle_end_date to previous cycle
+    //update calendar -- highlight four days w/ red color
+    console.log("archive clicked")
+    var cycle = new Cycle({'start_date': date})
+    console.log(cycle, "cycle model!")
+
+
+  }
 
 })
 
@@ -248,3 +279,7 @@ var FormView = Backbone.View.extend({
 //     "click #dinosaur_update_button" : "updateCallback"
 //   }
 // })
+
+
+
+

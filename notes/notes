@@ -1,3 +1,16 @@
+save: 
+<nav>
+<ul >
+  <% if user_signed_in? %>
+    <li class="links"> <a href="#">Home</a></li>
+
+    <li class="links"> <a href="/users/edit">Edit Profile</a></li>
+    <li class="links"> <%= link_to "Sign Out", destroy_user_session_fb_path %> </li>
+<% end %> 
+</ul>
+
+
+
 CALENDAR JQUERY Plug-In
 http://arshaw.com/fullcalendar/
 
