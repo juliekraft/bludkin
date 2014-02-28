@@ -36,7 +36,7 @@
 
 
 $(function(){
-  $('#main-container').empty() //just for testing!
+  // $('#main-container').empty() //just for testing!
   $.getJSON("http://localhost:3000/home/friend.json", function(data){
     console.log(data)
     data.forEach(function(user){ 
