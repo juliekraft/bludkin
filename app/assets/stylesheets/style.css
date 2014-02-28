@@ -36,14 +36,24 @@ nav {
 }
 
 
-    nav {
+  #whole-bar {
     background-color: #7D0B0F;
-    height: 60px;
-    list-style-type:none;
-    margin:0;
-    padding:10px;
-    margin-top: 0px;
+   
 
+    }
+
+   /* .left {
+      background-color: #7D0B0F;
+    }*/
+
+
+    .top-bar {
+      height: 30px;
+      }
+
+
+      .title-area {
+      background-color: #7D0B0F;
     }
 
     .links {
