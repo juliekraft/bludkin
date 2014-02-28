@@ -162,7 +162,7 @@ UI.Home = Backbone.View.extend({
 
     //instantiate new Cycle with start_date filled in
     console.log("archive clicked")
-    var cycle = new Cycle({'start_date': date})
+    var cycle = new Cycle({'start_date': date, 'user_id': current_user})
     cycle.save()
     console.log(cycle, 'cycle')
 
