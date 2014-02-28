@@ -23,5 +23,19 @@
     }
 
     nav {
-    display: inline;
+    background-color: #7D0B0F;
+    height: 60px;
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    margin-top: 0px;
+
     }
+
+    .links {
+      display: inline;
+    }
+
+   /* .logo {
+      width: 100px;
+    }*/
