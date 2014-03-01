@@ -156,14 +156,10 @@ UI.Friends = Backbone.View.extend({
     return template(attributes)
   },
   render: function(){
-
-   
-
-
-
     this.$el.html(this.template({ }))
     return this;
   }
+ 
 
 })
 
