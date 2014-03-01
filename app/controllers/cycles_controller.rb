@@ -1,5 +1,14 @@
 class CyclesController < ApplicationController
 
+  def index
+    @cycles = Cycle.all
+
+    respond_to do |format|
+      format.html
+      format.json {render json: @cycles}
+    end
+  end
+
   def create
     @cycle = Cycle.new(cycle_params)
     @cycle.user = current_user
