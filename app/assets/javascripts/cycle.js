@@ -23,9 +23,9 @@ var calendar_options = {
 var App = Backbone.Router.extend({
   routes: {
     "": "home", // friends network
-    "calendar" : "calendar"
+    "calendar" : "calendar",
     // "allFriends" : "friends",
-    // "stats" : "stats"
+    "stats" : "stats"
   },
 
   home: function(){
@@ -148,13 +148,11 @@ UI.Cal = Backbone.View.extend({
   },
 
   // CALLBACKS
-      // on click 'archive' callback, create instance of Cycle
-    // using submitCallback is breaking everything
-    // $('#archive').on('click', function(e){
+  // on click 'archive' create instance of Cycle
   archiveCallback: function(e){
     e.preventDefault()
 
-    //make date follow Ruby conventions
+    //make fullCalendar date follow Ruby conventions
     var months = {
       'Jan' : '01',
       'Feb' : '02',
@@ -179,13 +177,6 @@ UI.Cal = Backbone.View.extend({
     rdate.push(cdate.split(' ')[2]);
     var date = rdate.join('');
     console.log("date", date);
-
-    //check if previous cycle exists and add cycle_end_date to previous cycle
-    // so ruby
-    // if (Cycle.last) {
-    //   var last_cycle = Cycle.last;
-    //   last_cycle({'cycle_end_date': date});
-    // }
 
     //instantiate new Cycle with start_date filled in
     console.log("archive clicked")
