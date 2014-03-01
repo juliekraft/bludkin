@@ -57,6 +57,16 @@ var App = Backbone.Router.extend({
     // })
   },
 
+   stats: function(){
+    app.current_page = "stats"
+     if (ui) ui.remove()
+    var ui = new UI()
+    var stats = new UI.Stats()
+    ui.$el.empty()
+    ui.$el.append(stats.render().$el)
+    
+  },
+
    friends: function(){
     app.current_page = "friends"
     if (ui) ui.remove()
