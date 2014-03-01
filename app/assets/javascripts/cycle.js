@@ -252,7 +252,6 @@ UI.Stats = Backbone.View.extend({
 
 
 
-
 var Cycle = Backbone.Model.extend({
   url: function(){
     if(this.get("id")){
