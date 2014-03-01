@@ -10,51 +10,13 @@
 <body>
 
 
-<div class="off-canvas-wrap">
-  <div class="inner-wrap">
-    <nav class="tab-bar">
-      <section class="left-small">
-        <a class="left-off-canvas-toggle menu-icon" ><span></span></a>
-      </section>
-
-      <section class="middle tab-bar-section">
-        <h1 class="title">Foundation</h1>
-      </section>
-
-      <section class="right-small">
-        <a class="right-off-canvas-toggle menu-icon" ><span></span></a>
-      </section>
-    </nav>
-
-    <aside class="left-off-canvas-menu">
-      <ul class="off-canvas-list">
-        <li><label>Foundation</label></li>
-        <li><a href="#">The Psychohistorians</a></li>
-        ...
-      </ul>
-    </aside>
-
-    <aside class="right-off-canvas-menu">
-      <ul class="off-canvas-list">
-        <li><label>Users</label></li>
-        <li><a href="#">Hari Seldon</a></li>
-        ...
-      </ul>
-    </aside>
-
-   
-
-  <a class="exit-off-canvas"></a>
-
-  </div>
-</div>
-
+<!-- NAV BAR CRAZY STARTS HERE -->
 <div id="whole-bar">
 <nav class="top-bar">
   <ul class="title-area">
     <!-- Title Area -->
     <li class="name">
-      <h1><a href="#">bludKin </a></h1>
+      <h1 id="nav-font"><a href="#">Kin </a></h1>
     </li>
     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
     <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
@@ -64,48 +26,18 @@
     <!-- Left Nav Section -->
     <ul class="left">
       <li class="divider"></li>
-      <li class="active"><a href="#">Home</a></li>
+      <li class = "nav-button"><a href="#">Home</a></li>
       <li class="divider"></li>
       <li><a href="/#calendar">Calendar</a></li>
       <li class="divider"></li>
       <li><a href="#">STATS</a></li>
+        <li class="divider"></li>
+      <li><a href="/#all">Search</a></li>
 
-        <ul class="dropdown">
-          <li class="has-dropdown"><a href="#">Dropdown Level 1a</a>
-
-            <ul class="dropdown">
-              <li><label>Dropdown Level 2 Label</label></li>
-              <li><a href="#">Dropdown Level 2a</a></li>
-              <li><a href="#">Dropdown Level 2b</a></li>
-              <li class="has-dropdown"><a href="#">Dropdown Level 2c</a>
-
-                <ul class="dropdown">
-                  <li><label>Dropdown Level 3 Label</label></li>
-                  <li><a href="#">Dropdown Level 3a</a></li>
-                  <li><a href="#">Dropdown Level 3b</a></li>
-                  <li class="divider"></li>
-                  <li><a href="#">Dropdown Level 3c</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Dropdown Level 2d</a></li>
-              <li><a href="#">Dropdown Level 2e</a></li>
-              <li><a href="#">Dropdown Level 2f</a></li>
-            </ul>
-          </li>
-          <li><a href="#">Dropdown Level 1b</a></li>
-          <li><a href="#">Dropdown Level 1c</a></li>
-          <li class="divider"></li>
-          <li><a href="#">Dropdown Level 1d</a></li>
-          <li><a href="#">Dropdown Level 1e</a></li>
-          <li><a href="#">Dropdown Level 1f</a></li>
-          <li class="divider"></li>
-          <li><a href="#">See all &rarr;</a></li>
-        </ul>
-      </li>
-      <li class="divider"></li>
+      
     </ul>
 
-    <!-- Right Nav Section -->
+    <!-- KIN DROPDOWN -->
     <ul class="right">
       <li class="divider hide-for-small"></li>
       <li class="has-dropdown"><a href="#">My Kin</a>
@@ -141,27 +73,50 @@
           <li><a href="#">See all &rarr;</a></li>
         </ul>
       </li>
-      <li class="divider"></li>
-      <li class="has-form">
-        <form>
-          <div class="row collapse">
-            <div class="small-8 columns">
-              <input type="text">
-            </div>
-            <div class="small-4 columns">
-              <a href="#" class="alert button">Search</a>
-            </div>
-          </div>
-        </form>
-      </li>
-      <li class="divider show-for-small"></li>
-      <li class="has-form">
-        <a class="button" href="#">Search All Users</a>
+
+
+      <!-- SETTINGS DROPDOWN -->
+      <ul class="right">
+      <li class="divider hide-for-small"></li>
+      <li class="has-dropdown"><a href="#">Settings</a>
+
+        <ul class="dropdown">
+          <li><label>Dropdown Level 1 Label</label></li>
+          <li class="has-dropdown"><a href="#" class="">Dropdown Level 1a</a>
+
+            <ul class="dropdown">
+              <li><a href="#">Dropdown Level 2a</a></li>
+              <li><a href="#">Dropdown Level 2b</a></li>
+              <li class="has-dropdown"><a href="#">Dropdown Level 2c</a>
+
+                <ul class="dropdown">
+                  <li><a href="#">Dropdown Level 3a</a></li>
+                  <li><a href="#">Dropdown Level 3b</a></li>
+                  <li><a href="#">Dropdown Level 3c</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Dropdown Level 2d</a></li>
+              <li><a href="#">Dropdown Level 2e</a></li>
+              <li><a href="#">Dropdown Level 2f</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Dropdown Level 1b</a></li>
+          <li><a href="#">Dropdown Level 1c</a></li>
+          <li class="divider"></li>
+          <li><label>Dropdown Level 1 Label</label></li>
+          <li><a href="#">Dropdown Level 1d</a></li>
+          <li><a href="#">Dropdown Level 1e</a></li>
+          <li><a href="#">Dropdown Level 1f</a></li>
+          <li class="divider"></li>
+          <li><a href="#">See all &rarr;</a></li>
+        </ul>
       </li>
     </ul>
   </section>
 </nav>
 </div>
+<!-- NAV BAR CRAZINESS ^^^^ -->
+
 
 
 <div id = "main-container">
@@ -177,9 +132,6 @@
 
 <!-- this is for the cal and cycle form -->
 <script id="calendar-template" type = "text/x-handlebars-template">
-
-
-
 <div id="calendar-view">
 
   <div id="calendar" class="large-6 columns"></div>
@@ -194,21 +146,20 @@
         </form>
     </div>
   </div>
-
 </div>
 </script>
 
 
 <!-- Splash page home page -->
- <script id="home-template" type="text/x-handlebars-template">
+  <script id="home-template" type="text/x-handlebars-template">
      <div id="logo"><%= image_tag "logo.png", id: "logo" %>
      <h1>Is Today the Day?</h1>
      <button class="button radius round" >Yes</button> <button class="button radius round" >No</button></div>
-</script>
+  </script>
 
   
 <!-- this is for the search all friends page -->
-  <script id="friend-template" type="text/x-handlebars-template">
+  <script id="friends-template" type="text/x-handlebars-template">
       <h3>{{name}}</h3>
       <p> <img src= "{{image}}"> </p>
       <p> {{email}}</p>

@@ -36,16 +36,22 @@ nav {
 }
 
 
+
+/*NAV BAR*/
   #whole-bar {
     background-color: #7D0B0F;
    
 
     }
 
-   /* .left {
+    /*.nav-button { NOT WORKING
       background-color: #7D0B0F;
     }*/
-
+   
+    #nav-font {
+      font-size: 50px;
+      font-family: Gill Sans Ultra Bold;
+    }
 
     .top-bar {
       height: 30px;
@@ -56,9 +62,7 @@ nav {
       background-color: #7D0B0F;
     }
 
-    .links {
-      display: inline;
-    }
+ 
 
    #logo {
      width: 50%;

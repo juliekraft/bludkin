@@ -16,7 +16,8 @@
 //= require backbone
 //= require handlebars
 //= require fullcalendar
+//= require follow
 //= require cycle
 //= require scripts
-//= require follow
+
 

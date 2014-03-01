@@ -24,7 +24,7 @@ var App = Backbone.Router.extend({
   routes: {
     "": "home", // friends network
     "calendar" : "calendar",
-    // "allFriends" : "friends",
+    "all" : "friends",
     "stats" : "stats"
   },
 
@@ -55,10 +55,16 @@ var App = Backbone.Router.extend({
     //   console.log("archive clicked")
     //   var cycle = new Cycle({'start_date': ('#start-date-input').val})
     // })
- 
+  },
 
-  }
-
+   friends: function(){
+    app.current_page = "friends"
+    if (ui) ui.remove()
+    var ui = new UI()
+    var friends = new UI.Friends()
+    ui.$el.empty()
+    ui.$el.append(friends.render().$el)
+}
 //   calendar: function(){
 //     app.current_page = "calendar"
 //     if (ui) ui.remove()
@@ -124,6 +130,27 @@ UI.Home = Backbone.View.extend({
     return template(attributes)
   },
   render: function(){
+    this.$el.html(this.template({ }))
+    return this;
+  }
+
+})
+
+UI.Friends = Backbone.View.extend({
+  initialize: function(){
+
+  },
+  template: function(attributes){
+    var source = $('#friends-template').html()
+    var template = Handlebars.compile(source)
+    return template(attributes)
+  },
+  render: function(){
+
+   
+
+
+
     this.$el.html(this.template({ }))
     return this;
   }
