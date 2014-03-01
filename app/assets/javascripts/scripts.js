@@ -5,4 +5,6 @@ $(document).ready(function() {
   Backbone.history.start();
 
   console.log("document ready")
+
+ 
 });

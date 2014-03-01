@@ -9,7 +9,7 @@ var calendar_options = {
 
     // changes background color of day on calendar
     $('#color').removeAttr('id')
-    _.each($(this).attr('id', 'color'));
+    $(this).attr('id', 'color');
 
     //UGLY, FIX THIS
     // $(this).css('background-color', '#67090C');
@@ -33,6 +33,7 @@ var App = Backbone.Router.extend({
      if (ui) ui.remove()
     var ui = new UI()
     var home = new UI.Home()
+    ui.$el.empty()
     ui.$el.append(home.render().$el)
     
   },
@@ -42,6 +43,7 @@ var App = Backbone.Router.extend({
     if (ui) ui.remove()
     var ui = new UI()
     var cal = new UI.Cal()
+    ui.$el.empty()
     ui.$el.append(cal.render().$el)
     $('#calendar').fullCalendar(calendar_options)
 
@@ -112,13 +114,29 @@ UI.NavBar = Backbone.View.extend({
 
 })
 
+UI.Home = Backbone.View.extend({
+  initialize: function(){
+
+  },
+  template: function(attributes){
+    var source = $('#home-template').html()
+    var template = Handlebars.compile(source)
+    return template(attributes)
+  },
+  render: function(){
+    this.$el.html(this.template({ }))
+    return this;
+  }
+
+})
+
 UI.Cal = Backbone.View.extend({
   initialize: function(){
 
   },
   template: function(attributes){
     var source = $('#calendar-template').html()
-      var template = Handlebars.compile(source)
+    var template = Handlebars.compile(source)
       return template(attributes)
   }, 
    render: function(){
@@ -171,7 +189,7 @@ UI.Cal = Backbone.View.extend({
 
     //instantiate new Cycle with start_date filled in
     console.log("archive clicked")
-    var cycle = new Cycle({'start_date': date, 'user_id': current_user})
+    var cycle = new Cycle({'start_date': date })
     cycle.save()
     console.log(cycle, 'cycle')
 

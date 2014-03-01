@@ -3,8 +3,8 @@
 <head>
   <title>BludKin</title>
   
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -66,7 +66,7 @@
       <li class="divider"></li>
       <li class="active"><a href="#">Home</a></li>
       <li class="divider"></li>
-      <li><a href="#">Calendar</a></li>
+      <li><a href="/#calendar">Calendar</a></li>
       <li class="divider"></li>
       <li><a href="#">STATS</a></li>
 
@@ -177,8 +177,8 @@
 
 <!-- this is for the cal and cycle form -->
 <script id="calendar-template" type = "text/x-handlebars-template">
-<h1>BLUDKIN</h1>
-<%= image_tag "logo.png", id: "logo" %>
+
+
 
 <div id="calendar-view">
 
@@ -188,18 +188,23 @@
     <div id = "cycle-info">
       <h3>Cycle Info</h3>
         <form action="">
-          <input id="start-date-input" class= "small-3 columns" type="text" placeholder = "Start Date">
+          <input id="start-date-input" class="small-3 columns" type="text" placeholder = "Start Date">
 
-          <button class = "button radius round"  id="archive">Archive</button>
+          <button class="button radius round"  id="archive">Archive</button>
         </form>
     </div>
   </div>
 
 </div>
-
-
 </script>
 
+
+<!-- Splash page home page -->
+ <script id="home-template" type="text/x-handlebars-template">
+     <div id="logo"><%= image_tag "logo.png", id: "logo" %>
+     <h1>Is Today the Day?</h1>
+     <button class="button radius round" >Yes</button> <button class="button radius round" >No</button></div>
+</script>
 
   
 <!-- this is for the search all friends page -->

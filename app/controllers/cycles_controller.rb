@@ -1,8 +1,14 @@
 class CyclesController < ApplicationController
 
   def create
-    @cycle = Cycle.create(cycle_params)
+    @cycle = Cycle.new(cycle_params)
+    @cycle.user = current_user
+    if current_user.cycles.length > 0
+      current_user.cycles.last.update_attributes(cycle_end_date: @cycle.start_date)
+    end
+    @cycle.save!
     render json: @cycle
+
   end
 
   def destroy

@@ -32637,3 +32637,5 @@ Started GET "/assets/logo.png" for 127.0.0.1 at 2014-02-28 14:52:44 -0500
 =======
   [1m[36mUser Load (24.1ms)[0m  [1mSELECT "users".* FROM "users"[0m
 >>>>>>> 461c9960ffcef67a8e1504403dc4929c500cb8de
+  [1m[36mCycle Load (1.1ms)[0m  [1mSELECT "cycles".* FROM "cycles" ORDER BY "cycles"."id" DESC LIMIT 1[0m
+  [1m[35mCycle Load (0.8ms)[0m  SELECT "cycles".* FROM "cycles"
