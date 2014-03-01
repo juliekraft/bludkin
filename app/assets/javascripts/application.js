@@ -18,6 +18,7 @@
 //= require fullcalendar
 //= require follow
 //= require cycle
+//= require stats
 //= require scripts
 
 

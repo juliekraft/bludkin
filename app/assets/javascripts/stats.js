@@ -1,6 +1,7 @@
 // THIS GIVES STATS PAGE
 $(function(){
-  // $('#main-container').empty() //just for testing!
+  console.log("Stats document onload function")
+  $('#main-container').empty() //just for testing!
   $.getJSON("http://localhost:3000/cycles.json", function(data){
     console.log(data)
     data.forEach(function(cycle){ 
