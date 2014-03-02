@@ -108,12 +108,12 @@ background-color: #F9F1DC;
   width: 50%;
   padding: 10px;
   border-radius: 20%;
+  box-shadow: 10px 10px 5px #888888;
  
 }
 
 #profile-pic {
   height: 100px;
-
 
 }
 
@@ -126,7 +126,24 @@ background-color: #F9F1DC;
 
 }
 
+#cycle {
+  background-color: white;
+  width: 250px;
+  text-align: center;
+  margin-top: 40px;
+  margin: 40px;
+  box-shadow: 10px 10px 5px #888888;
+ /* border-radius: 20%;*/
+ /*float: left;*/
+}
 
+#calendar {
+  margin-top: 60px;
+}
+
+#content-view {
+  margin-top: 60px;
+}
 
 
 
