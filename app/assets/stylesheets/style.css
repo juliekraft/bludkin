@@ -103,11 +103,28 @@ background-color: #F9F1DC;
 
 }
 
+#profile-splash {
+  background-color: white;
+  width: 50%;
+  padding: 10px;
+  border-radius: 20%;
+ 
+}
+
+#profile-pic {
+  height: 100px;
 
 
+}
 
+#profile-image {
+ 
+}
 
+#profile-info {
+ 
 
+}
 
 
 

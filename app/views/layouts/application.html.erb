@@ -33,6 +33,7 @@
       <li><a href="/#stats">STATS</a></li>
         <li class="divider"></li>
       <li><a href="/#all">Search</a></li>
+      <li> <a href="/#users/sign_out">Sign Out</a></li>
 
       
     </ul>
@@ -150,6 +151,9 @@
 </script>
 
 
+
+
+
 <!-- Splash page home page -->
   <script id="home-template" type="text/x-handlebars-template">
      <div id="logo"><%= image_tag "logo.png", id: "logo" %>
@@ -159,15 +163,28 @@
 
   
 <!-- this is for the search all friends page -->
-  <script id="friends-template" type="text/x-handlebars-template">
+<script id="search-template" type="text/x-handlebar-template">
+      <h2>All Users</h2>
       <div id="search-field">
       <input id="search-bar" type="text"> <input class="button radius round" id="search-bar" type="submit"> 
       </div>
-      <h2>All Users</h2>
-      <h4>{{name}}</h4>
-      <p> <img src= "{{image}}"> </p>
-      <p> {{email}}</p>
-      <p> <button class="tiny button radius round">SYNC</button>
+</script>
+
+  <script id="friends-template" type="text/x-handlebars-template">
+      <div id="profile-splash" class="row">
+        <div id="profile-image" class="large-3 columns">
+          <img id="profile-pic" src= "{{image}}"> 
+        </div>
+
+        <div id="profile-info" class="large-3 columns">
+          <p>{{name}}<p>
+          <p> {{email}}</p>
+        </div>
+
+        <div id="follow-button" class="large-3 columns">
+          <button class="tiny button radius round">SYNC</button>
+        </div>
+      </div> </br>
   </script>
 
   <script id="stats-template" type="text/x-handlebars-template">
@@ -175,6 +192,7 @@
       <p>Cycle Start {{start_date}}</p> <br/>
       <p>Period End {{period_end_date}}</p> <br/>
       <p>Cycle End {{cycle_end_date}}</p> <br/>
+      <p> <button class="tiny button radius round">Edit</button>
     </div>
   </script>
 
