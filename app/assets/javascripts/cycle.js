@@ -146,31 +146,60 @@ UI.Home = Backbone.View.extend({
 
 })
 
+
+
+UI.FriendView = Backbone.View.extend({
+  template: function(){
+    var source = $('#friends-template').html()
+    return Handlebars.compile(source)
+  },  
+  render: function(){
+    
+    this.$el.html(this.template()(this.model))
+    return this;
+  },
+  events: {
+    'click #follow-button' : 'followCallback'
+  },
+
+  followCallback: function(e){
+    e.preventDefault()
+    var new_follow = new Follow({'followee': this.model.id})
+    new_follow.save()
+    alert(this.model.name + ' was followed')
+    console.log("new_follow", new_follow)
+
+    // var followee = this.$('# input').val()
+  }
+})
+
+
 UI.Friends = Backbone.View.extend({
   initialize: function(){
+
+    var self = this;
+    
     $.getJSON("http://localhost:3000/home/friend.json", function(data){
-    console.log(data)
-    data.forEach(function(user){ 
-      var source = $('#friends-template').html();
-      var template = Handlebars.compile(source);
-      var $user = $(template(user))
-      $('#main-container').append($user)
+      // console.log(data)
+      
+      monkey = data
+      data.forEach(function(user){
+
+        var new_view = new UI.FriendView({model: user})
+        self.$el.append(new_view.render().el);
+
+      })
     })
-  })
 
   },
-  template: function(attributes){
-    var source = $('#friends-template').html()
-    var template = Handlebars.compile(source)
-    return template(attributes)
-  },
-  render: function(){
-    this.$el.html(this.template({ }))
-    return this;
+
+  el: function(){
+    return $('#main-container');
   }
- 
 
 })
+
+
 
 UI.Cal = Backbone.View.extend({
   initialize: function(){
@@ -179,10 +208,10 @@ UI.Cal = Backbone.View.extend({
   template: function(attributes){
     var source = $('#calendar-template').html()
     var template = Handlebars.compile(source)
-      return template(attributes)
+    return template(attributes)
   }, 
    render: function(){
-    this.$el.html(this.template({ }))
+    this.$el.html(this.template({}))
     return this;
   },
   events: {
@@ -244,21 +273,28 @@ UI.Stats = Backbone.View.extend({
       })
     })
   },
-  template: function(attributes){
+  template: function(){
     var source = $('#stats-template').html()
-    var template = Handlebars.compile(source)
-
-    return template(attributes)
+    return Handlebars.compile(source)
   },
   render: function(){
-    this.$el.html(this.template({ }))
+    console.log('this.model', this.model)
+    this.$el.html(this.template(this.model.attributes))
     return this;
   }
 })
 
 
 
-
+var Follow = Backbone.Model.extend({
+  url: function(){
+    if(this.get("id")){
+      return "/follows/" + this.get("id")
+    } else {
+      return "/follows"
+    }
+  }
+})
 
 
 
