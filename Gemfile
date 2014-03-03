@@ -26,6 +26,7 @@ gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
+
 # custom gems
 gem 'devise'
 gem 'omniauth-facebook'
@@ -53,3 +54,16 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+
+gem 'rails_12factor', group: :production
+
+
+
+
+ruby '2.0.0'
+
+
+
+
+
