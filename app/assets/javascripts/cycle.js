@@ -163,7 +163,7 @@ UI.Friends = Backbone.View.extend({
 
   initialize: function(){
     var self = this;
-    $.getJSON("http://localhost:3000/home/friend.json", function(data){
+    $.getJSON("/home/friend.json", function(data){
       data.forEach(function(user){
         var new_view = new UI.FriendView({model: user})
         self.$el.append(new_view.render().el);
@@ -243,7 +243,7 @@ UI.Cal = Backbone.View.extend({
 UI.Stats = Backbone.View.extend({
 
   initialize: function(){
-    $.getJSON("http://localhost:3000/cycles.json", function(data){
+    $.getJSON("/cycles.json", function(data){
       data.forEach(function(cycle){ 
         var source = $('#stats-template').html();
         var template = Handlebars.compile(source);
@@ -314,17 +314,17 @@ var Cycle = Backbone.Model.extend({
   }
 })
 
-// var CycleView = Backbone.View.extend({
-//   initialize: function(){
+var CycleView = Backbone.View.extend({
+  initialize: function(){
 
-//   },
-//   template: function(){
+  },
+  template: function(){
 
-//   },
-//   render: function(){
+  },
+  render: function(){
 
-//   }
-// })
+  }
+})
 
 // var CycleCollection = Backbone.Collection.extend({
 

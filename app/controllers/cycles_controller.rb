@@ -12,8 +12,10 @@ class CyclesController < ApplicationController
   def create
     @cycle = Cycle.new(cycle_params)
     @cycle.user = current_user
+    last_cycle = current_user.cycles.last
     if current_user.cycles.length > 0
-      current_user.cycles.last.update_attributes(cycle_end_date: @cycle.start_date)
+      last_cycle.update_attributes(cycle_end_date: @cycle.start_date)
+      #find number of days between start date and end date of last cycle to update days attribute
     end
     @cycle.save!
     render json: @cycle

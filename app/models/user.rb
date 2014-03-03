@@ -31,4 +31,7 @@ class User < ActiveRecord::Base
     end
   end
 
+  def stddev
+    Cycle.connection.execute("select stddev(cycle_end_date - start_date) from cycles where cycle_end_date is not null and user_id = #{self.id}").values[0][0].to_f
+  end
 end
