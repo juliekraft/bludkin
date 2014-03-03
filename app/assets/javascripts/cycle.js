@@ -61,6 +61,7 @@ var App = Backbone.Router.extend({
 //   }
 })
 
+
 var UI = Backbone.View.extend({
   initialize: function(){
 
@@ -89,34 +90,41 @@ var UI = Backbone.View.extend({
 
 })
 
+
 UI.NavBar = Backbone.View.extend({
 
   initialize: function(){
 
   },
+
+  template: function(attributes){
+    var source = $('#nav-bar-template').html()
+    var template = Handlebars.compile(source)
+    return template(attributes)
+  },
+
   render: function(){
     this.$el.html(this.template({
       page_name: app.current_page
     }))
     return this;
-  },
-  template: function(attributes){
-    var source = $('#nav-bar-template').html()
-      var template = Handlebars.compile(source)
-      return template(attributes)
   }
 
 })
 
+
 UI.Home = Backbone.View.extend({
+
   initialize: function(){
 
   },
+
   template: function(attributes){
     var source = $('#home-template').html()
     var template = Handlebars.compile(source)
     return template(attributes)
   },
+
   render: function(){
     this.$el.html(this.template({ }))
     return this;
@@ -126,15 +134,17 @@ UI.Home = Backbone.View.extend({
 
 
 UI.FriendView = Backbone.View.extend({
+
   template: function(){
     var source = $('#friends-template').html()
     return Handlebars.compile(source)
-  },  
+  },
+
   render: function(){
-    
     this.$el.html(this.template()(this.model))
     return this;
   },
+
   events: {
     'click #follow-button' : 'followCallback'
   },
@@ -145,52 +155,45 @@ UI.FriendView = Backbone.View.extend({
     new_follow.save()
     alert(this.model.name + ' was followed')
     console.log("new_follow", new_follow)
-
-    // var followee = this.$('# input').val()
   }
 })
 
 
 UI.Friends = Backbone.View.extend({
+
   initialize: function(){
-
     var self = this;
-    
     $.getJSON("http://localhost:3000/home/friend.json", function(data){
-      // console.log(data)
-      
-      monkey = data
       data.forEach(function(user){
-
         var new_view = new UI.FriendView({model: user})
         self.$el.append(new_view.render().el);
-
       })
     })
-
   },
 
   el: function(){
     return $('#main-container');
   }
-
 })
 
 
-
 UI.Cal = Backbone.View.extend({
+
   initialize: function(){
 
   },
+
   template: function(attributes){
     var source = $('#calendar-template').html()
     var template = Handlebars.compile(source)
     return template(attributes)
-  }, 
+  },
+
    render: function(){
     this.$el.html(this.template({}))
     return this;
   },
+
   events: {
     'click #archive' : 'archiveCallback' // syntax?  or App.home.submitCallback?
   },
@@ -233,15 +236,14 @@ UI.Cal = Backbone.View.extend({
     console.log(cycle, 'cycle')
 
     //update calendar -- highlight four days w/ red color
-
   }
-
 })
 
+
 UI.Stats = Backbone.View.extend({
+
   initialize: function(){
     $.getJSON("http://localhost:3000/cycles.json", function(data){
-      // console.log(data)
       data.forEach(function(cycle){ 
         var source = $('#stats-template').html();
         var template = Handlebars.compile(source);
@@ -250,16 +252,19 @@ UI.Stats = Backbone.View.extend({
       })
     })
   },
+
   template: function(){
     var source = $('#stats-template').html()
     return Handlebars.compile(source)
   },
+
   render: function(){
     console.log('this.model', this.model)
     this.$el.html(this.template(this.model.attributes))
     return this;
   }
 })
+
 
 var calendar_options = {
   dayClick: function(date, allDay, jsEvent, view) {
@@ -283,6 +288,7 @@ var calendar_options = {
   }
 }
 
+
 var Follow = Backbone.Model.extend({
   url: function(){
     if(this.get("id")){
@@ -292,6 +298,7 @@ var Follow = Backbone.Model.extend({
     }
   }
 })
+
 
 var Cycle = Backbone.Model.extend({
   url: function(){
@@ -330,10 +337,6 @@ var Cycle = Backbone.Model.extend({
 //   //   'click #archive' : 'submitCallback' // syntax?  or App.home.submitCallback?
 //   // }
 // })
-
-
-
-
 
 
 
