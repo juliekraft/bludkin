@@ -156,9 +156,9 @@
 
 <!-- Splash page home page -->
   <script id="home-template" type="text/x-handlebars-template">
-     <div id="logo"><%= image_tag "logo.png", id: "logo" %>
+     <div class="row" id="logo"><%= image_tag "logo.png", id: "logo" %></div>
      <h1>Is Today the Day?</h1>
-     <button class="button radius round" >Yes</button> <button class="button radius round" >No</button></div>
+     <button class="button radius round" >Yes</button> <button class="button radius round" >No</button>
   </script>
 
   
@@ -196,7 +196,7 @@
       <p>Cycle Start Date: {{start_date}}</p> 
       <p>Period End Date: {{period_end_date}}</p> 
       <p>Cycle End Date: {{cycle_end_date}}</p> 
-      <button class="tiny button radius round">Edit</button>
+      <button id="cycle-edit-button" class="tiny button radius round">Edit</button>
       
     </div>
 

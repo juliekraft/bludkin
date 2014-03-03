@@ -281,6 +281,10 @@ UI.Stats = Backbone.View.extend({
     console.log('this.model', this.model)
     this.$el.html(this.template(this.model.attributes))
     return this;
+  },
+
+  events: {
+    'click #cycle-edit-button' : 'cycleEditCallback' 
   }
 })
 
@@ -295,8 +299,6 @@ var Follow = Backbone.Model.extend({
     }
   }
 })
-
-
 
 
 

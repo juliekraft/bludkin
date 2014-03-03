@@ -65,8 +65,10 @@ nav {
  
 
    #logo {
-     width: 50%;
+    width: 50%;
     margin: 0 auto;
+    margin-top: 40px;
+
     }
 /*  nav {
     display: inline;
