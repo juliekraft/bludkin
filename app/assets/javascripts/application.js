@@ -15,6 +15,8 @@
 //= require underscore-min
 //= require backbone
 //= require handlebars
+//= require d3
+//= require nv.d3
 //= require fullcalendar
 //= require follow
 //= require cycle
