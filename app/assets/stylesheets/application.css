@@ -11,5 +11,6 @@
  *= require_self
  *= require foundation
  *= require fullcalendar
+ *= require nv.d3
  *= require style
  */

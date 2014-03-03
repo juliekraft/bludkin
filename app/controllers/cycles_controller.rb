@@ -1,7 +1,7 @@
 class CyclesController < ApplicationController
 
   def index
-    @cycles = Cycle.all
+    @cycles = current_user.cycles 
 
     respond_to do |format|
       format.html
