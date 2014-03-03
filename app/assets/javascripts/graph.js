@@ -16,7 +16,19 @@ var generateChart = function() {
     .axisLabel('Cycle Length')
     .tickFormat(d3.format('.02f'));
 
-    var myData = sinAndCos();
+    var myData = info();
+
+    d3.select('#chart svg')
+      .datum(info)
+      .call(chart);
+
+ nv.utils.windowResize(function() { chart.update() });
+  return chart;
+  });
+
+function info(){
+  ////AJAX CALL HERE?
+}
 
 
 }
