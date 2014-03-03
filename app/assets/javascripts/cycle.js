@@ -274,6 +274,13 @@ UI.Stats = Backbone.View.extend({
     return template(attributes)
   },
 
+  // DON'T KNOW IF THIS IS RIGHT
+  updateTemplate: function(attributes){
+    var source = $('#stats-update-template').html()
+    var template = Handlebars.compile(source)
+    return template(attributes)
+  },  
+
   render: function(collection){
     var self = this;
 
@@ -300,6 +307,18 @@ UI.Stats = Backbone.View.extend({
     return this;
   },
 
+  cycleEditCallback: function(event){
+    var id = $(event.target).parent().data('cycle-id')
+    console.log("EDIT MEEEE ok", id);
+
+    //render stats-update-template for div clicked
+    // id.html(AHHHHHHHHH.render().el)
+    //populate form with cycle attributes
+    //allow user to update form (datepicker?)
+    //changes 'edit' button to 'update'
+
+  }
+
   // renderCycles: function(collection){
   //   // var self = this;
   //   console.log('collection.models', collection.models)
@@ -312,11 +331,6 @@ UI.Stats = Backbone.View.extend({
   // events: {
   //   'click .cycle-edit-button' : 'cycleEditCallback' 
   // }, 
-
-  cycleEditCallback: function(event){
-    var id = $(event.target).parent().data('cycle-id')
-    console.log("EDIT MEEEE ok", id);
-  }
 
 })
 
