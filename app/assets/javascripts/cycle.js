@@ -1,25 +1,3 @@
-var calendar_options = {
-  dayClick: function(date, allDay, jsEvent, view) {
-    // console.log('date', date)
-    // console.log('allDay', allDay)
-    // console.log('jsEvent', jsEvent)
-    // console.log('view', view)
-
-    $('#start-date-input').val(date)
-
-    // changes background color of day on calendar
-    $('#color').removeAttr('id')
-    $(this).attr('id', 'color');
-
-    //UGLY, FIX THIS
-    // $(this).css('background-color', '#67090C');
-    // $(this).next().css('background-color', '#67090C');
-    // $(this).next().next().css('background-color', '#67090C');
-    // $(this).next().next().next().css('background-color', '#67090C');
-    // }
-  }
-}
-
 var App = Backbone.Router.extend({
   routes: {
     "": "home", // friends network
@@ -145,7 +123,6 @@ UI.Home = Backbone.View.extend({
   }
 
 })
-
 
 
 UI.FriendView = Backbone.View.extend({
@@ -284,7 +261,27 @@ UI.Stats = Backbone.View.extend({
   }
 })
 
+var calendar_options = {
+  dayClick: function(date, allDay, jsEvent, view) {
+    // console.log('date', date)
+    // console.log('allDay', allDay)
+    // console.log('jsEvent', jsEvent)
+    // console.log('view', view)
 
+    $('#start-date-input').val(date)
+
+    // changes background color of day on calendar
+    $('#color').removeAttr('id')
+    $(this).attr('id', 'color');
+
+    //UGLY, FIX THIS
+    // $(this).css('background-color', '#67090C');
+    // $(this).next().css('background-color', '#67090C');
+    // $(this).next().next().css('background-color', '#67090C');
+    // $(this).next().next().next().css('background-color', '#67090C');
+    // }
+  }
+}
 
 var Follow = Backbone.Model.extend({
   url: function(){
@@ -296,11 +293,6 @@ var Follow = Backbone.Model.extend({
   }
 })
 
-
-
-
-
-
 var Cycle = Backbone.Model.extend({
   url: function(){
     if(this.get("id")){
@@ -311,33 +303,33 @@ var Cycle = Backbone.Model.extend({
   }
 })
 
-var CycleView = Backbone.View.extend({
-  initialize: function(){
+// var CycleView = Backbone.View.extend({
+//   initialize: function(){
 
-  },
-  template: function(){
+//   },
+//   template: function(){
 
-  },
-  render: function(){
+//   },
+//   render: function(){
 
-  }
-})
+//   }
+// })
 
-var CycleCollection = Backbone.Collection.extend({
+// var CycleCollection = Backbone.Collection.extend({
 
-})
+// })
 
-var CycleCollectionView = Backbone.View.extend({
+// var CycleCollectionView = Backbone.View.extend({
 
-})
+// })
 
 
-var FormView = Backbone.View.extend({
-  // below copied to UI.Home
-  // events: {
-  //   'click #archive' : 'submitCallback' // syntax?  or App.home.submitCallback?
-  // }
-})
+// var FormView = Backbone.View.extend({
+//   // below copied to UI.Home
+//   // events: {
+//   //   'click #archive' : 'submitCallback' // syntax?  or App.home.submitCallback?
+//   // }
+// })
 
 
 
