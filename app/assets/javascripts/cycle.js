@@ -41,7 +41,8 @@ var App = Backbone.Router.extend({
     var ui = new UI()
     var stats = new UI.Stats()
     ui.$el.empty()
-    ui.$el.append(stats.render().$el)
+    // ghost div
+    // ui.$el.append(stats.render().$el)
     
   },
 
@@ -61,10 +62,11 @@ var App = Backbone.Router.extend({
 //   }
 })
 
-
+//CONSTRUCTOR
 var UI = Backbone.View.extend({
-  initialize: function(){
-
+  initialize: function(attributes){
+    //INSTANCE OF CONSTRUCTOR OMG
+    window.ui = this;
   },
 
   el: function(){
@@ -243,30 +245,79 @@ UI.Cal = Backbone.View.extend({
 UI.Stats = Backbone.View.extend({
 
   initialize: function(){
-    $.getJSON("/cycles.json", function(data){
-      data.forEach(function(cycle){ 
-        var source = $('#stats-template').html();
-        var template = Handlebars.compile(source);
-        var $cycle = $(template(cycle))
-        $('#main-container').append($cycle)
-      })
-    })
+    //makes a new empty cycle collection
+    this.collection = new CycleCollection();
+
+    //gets data from db
+    this.collection.fetch()
+
+    //makes render wait for fetch to finish before it's rendered
+    this.listenTo(this.collection, "sync", this.render)
+
+    //makes collection globally accessible (for debuggin')
+    // window.collection = this.collection
+
+    //The above lines of code do everything below wow
+    // $.getJSON("/cycles.json", function(data){
+    //   data.forEach(function(cycle){ 
+    //     var source = $('#stats-template').html();
+    //     var template = Handlebars.compile(source);
+    //     var $cycle = $(template(cycle))
+    //     $('#main-container').append($cycle)
+    //   })
+    // })
   },
 
-  template: function(){
+  template: function(attributes){
     var source = $('#stats-template').html()
-    return Handlebars.compile(source)
+    var template = Handlebars.compile(source)
+    return template(attributes)
   },
 
-  render: function(){
-    console.log('this.model', this.model)
-    this.$el.html(this.template(this.model.attributes))
+  render: function(collection){
+    var self = this;
+
+    // fetch is slow as hell so render is actually called twice
+    // the line below makes the code not break when it isn't passed a collection
+    if (!collection) return this;
+
+    console.log(collection, this, "rendering!!!!")
+    // console.log('collection.models', collection.models)
+
+
+    _.each(collection.models, function(model){
+
+      // console.log(model, "cycle model")
+      // console.log(self.template, "self.template")
+
+      var $cycle = $(self.template(model.attributes));
+
+      // binding function to click before appending to page
+      $cycle.find('.cycle-edit-button').on("click", self.cycleEditCallback)
+      ui.$el.append($cycle)
+    })
+
     return this;
   },
 
-  events: {
-    'click #cycle-edit-button' : 'cycleEditCallback' 
+  // renderCycles: function(collection){
+  //   // var self = this;
+  //   console.log('collection.models', collection.models)
+  //   _.each(collection.models, function(model){
+  //     self.$el.html(self.template(model.attributes))
+  //   })
+  //   return this;
+  // },
+
+  // events: {
+  //   'click .cycle-edit-button' : 'cycleEditCallback' 
+  // }, 
+
+  cycleEditCallback: function(event){
+    var id = $(event.target).parent().data('cycle-id')
+    console.log("EDIT MEEEE ok", id);
   }
+
 })
 
 
@@ -326,9 +377,11 @@ var CycleView = Backbone.View.extend({
   }
 })
 
-// var CycleCollection = Backbone.Collection.extend({
+var CycleCollection = Backbone.Collection.extend({
+  url: "/cycles", 
 
-// })
+  model: Cycle
+})
 
 // var CycleCollectionView = Backbone.View.extend({
 
