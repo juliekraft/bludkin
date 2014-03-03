@@ -33,7 +33,7 @@ gem 'omniauth-facebook'
 gem 'better_errors'
 gem 'pry'
 gem 'pry-rails'
-gem 'jquery-rails'
+
 gem 'rspec'
 gem 'rspec-rails'
 gem 'capybara'
