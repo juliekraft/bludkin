@@ -1,10 +1,12 @@
 $(document).ready(function() {
 
-  window.app = new App();
-  
-  Backbone.history.start();
+  if (window.location.pathname === "/cycles" ||
+      window.location.pathname === "/" ||
+      window.location.hash === "#_=_")
+  {
+    window.app = new App();
+    Backbone.history.start();
+    console.log("document ready")
+  }
 
-  console.log("document ready")
-
- 
 });
