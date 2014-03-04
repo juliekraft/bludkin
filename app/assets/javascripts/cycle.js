@@ -337,6 +337,9 @@ UI.Stats = Backbone.View.extend({
       // binding function to click before appending to page
       $cycle.find('.cycle-edit-button').on("click", self.cycleEditCallback)
       ui.$el.append($cycle)
+
+      //GRAPH
+      getInfo();
     })
 
     return this;
