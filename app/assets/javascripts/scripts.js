@@ -1,10 +1,14 @@
 $(document).ready(function() {
 
-  window.app = new App();
-  
-  Backbone.history.start();
+  if (window.location.path === "/cycles" || window.location.path === "/"){
 
-  console.log("document ready")
+    window.app = new App();
+  
+    Backbone.history.start();
+
+    console.log("document ready")
+
+  }
 
  
 });
