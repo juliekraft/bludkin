@@ -128,7 +128,7 @@ background-color: #F9F1DC;
 
 }
 
-#cycle {
+.cycle {
   background-color: white;
 
   width: 250px;
@@ -148,6 +148,10 @@ background-color: #F9F1DC;
 
 #content-view {
   margin-top: 60px;
+}
+
+.hidden {
+  display: none;
 }
 
 

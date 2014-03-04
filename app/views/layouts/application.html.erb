@@ -189,35 +189,47 @@
 
   <script id="stats-template" type="text/x-handlebars-template">
 
-    <div data-cycle-id="{{id}}" id="cycle">
+    <div data-cycle-id="{{id}}" class="cycle">
     
       <h3><strong>Cycle {{id}}</strong></h3>
       
+      <div class="cycle-content">
       <p>Cycle Start Date: {{start_date}}</p> 
       <p>Period End Date: {{period_end_date}}</p> 
-      <p>Cycle End Date: {{cycle_end_date}}</p> 
+      <p>Cycle End Date: {{cycle_end_date}}</p>
       <button class="cycle-edit-button tiny button radius round">Edit</button>
+      </div>
+
+      <div class="cycle-form hidden">
+        <form>
+        Start date: <input type="text" name="start_date" placeholder="{{start_date}}">
+        Period end date: <input type="text" name="period_end_date" placeholder="{{period_end_date}}">
+        Cycle end date: <input type="text" name="cycle_end_date" placeholder="{{cycle_end_date}}"> 
+        </form>
+        <button class="cycle-update-button tiny button radius round">Update</button>
+      </div>
+      
       
     </div>
 
   </script>
 
-    <script id="stats-update-template" type="text/x-handlebars-template">
+  //   <script id="stats-update-template" type="text/x-handlebars-template">
 
-    <div data-cycle-id="{{id}}" id="update-cycle">
+  //   <div data-cycle-id="{{id}}" class="update-cycle">
     
-      <h3><strong>Cycle {{id}}</strong></h3>
+  //     <h3><strong>Cycle {{id}}</strong></h3>
       
-      <form>
-      Start date: <input type="text" name="start_date" placeholder="{{start_date}}">
-      Period end date: <input type="text" name="period_end_date" placeholder="{{period_end_date}}">
-      Cycle end date: <input type="text" name="cycle_end_date" placeholder="{{cycle_end_date}}"> 
-      </form>
-      <button class="cycle-update-button tiny button radius round">Update</button>
+  //     <form>
+  //     Start date: <input type="text" name="start_date" placeholder="{{start_date}}">
+  //     Period end date: <input type="text" name="period_end_date" placeholder="{{period_end_date}}">
+  //     Cycle end date: <input type="text" name="cycle_end_date" placeholder="{{cycle_end_date}}"> 
+  //     </form>
+  //     <button class="cycle-update-button tiny button radius round">Update</button>
       
-    </div>
+  //   </div>
 
-  </script>
+  // </script>
 
 
 <svg id="chart"></svg>
