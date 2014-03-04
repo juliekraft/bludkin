@@ -15,8 +15,7 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
-=======
+
 log/development.log
+vendor/bundle
 
-
->>>>>>> 5fe0fdf5d4ca1293abc51d58ffd48a2dff034d9d
