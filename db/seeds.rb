@@ -13,11 +13,13 @@ Cycle.delete_all
 CycleContent.delete_all
 
 
-users = User.create([{ email: "sue@email.com", name: "Sue", password: "password", image: "placekitten.com/300/200"}, {email: "jo@email.com", name: "JO", password: "password", image: "placekitten.com/300/200"}, {email: "julie@email.com", name: "Julie", password: "password", image: "placekitten.com/200/300"}, {email: "meghann@email.com", name: "Meghann", password: "password", image: "placekitten.com/300/200"} ])
+users = User.create([{ email: "sue@email.com", name: "Sue", password: "password", image: "http://placekitten.com/300/200"}, {email: "jo@email.com", name: "JO", password: "password", image: "http://placekitten.com/300/200"}, {email: "julie@email.com", name: "Julie", password: "password", image: "http://placekitten.com/200/300"}, {email: "meghann@email.com", name: "Meghann", password: "password", image: "http://placekitten.com/300/200"} ])
 
 follows = Follow.create([{ follower: User.first, followee: User.last}])
 
-cycle = Cycle.create([{ start_date: Time.now, period_end_date: Date.new(2014,02,15), cycle_end_date: Date.new(2014, 02, 20), user_id: User.first}, {start_date: Time.now, period_end_date: Date.new(2014,01,15), cycle_end_date: Date.new(2014, 01, 20), user_id: User.first}])
+user_first = User.first
+
+cycle = Cycle.create([{ start_date: Date.new(2014,01,01), period_end_date: Date.new(2014,01,04), cycle_end_date: Date.new(2014, 02, 01), user_id: user_first.id}, {start_date: Date.new(2014, 02, 01), period_end_date: Date.new(2014,02, 05), cycle_end_date: Date.new(2014, 03, 05), user_id: user_first.id}, {start_date: Date.new(2014, 03, 05), period_end_date: Date.new(2014,02, 10), cycle_end_date: Date.new(2014, 04, 05), user_id: user_first.id}])
 
 # messages = Message.create({to_id: 1, from_id: 2, message: "I love bleeding"}, {to_id: 2, from_id: 1, message: "I love bloods."}, {to_id: 4, from_id: 3, message: "Bloods is badass"})
 

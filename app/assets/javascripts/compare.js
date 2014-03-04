@@ -14,20 +14,10 @@ var getCompareInfo = function(){
    $.getJSON("/cycles/months.json", function(data) {
       // data = buildData(data)
       // myData = data 
-     var periodData = [{ values: []}]
-     _.each(data, function(cycle, index){
+     
+      console.log("DATA", data)
 
-      periodData[0].values.push({
-        y: cycle.days,
-        x: index,
-        color: '#ff7f0e',
-        key: "Meghann"
-      });
-
-     })
-      console.log(data)
-
-      generateChart(periodData)
+      generateChart(compareData)
    })
 }
 
@@ -48,7 +38,7 @@ var getCompareInfo = function(){
 // ]
 // }];
 
-var generateChart = function(myData) {
+var generateCompareChart = function(myData) {
 
   nv.addGraph(function() {
     chart = nv.models.lineChart()

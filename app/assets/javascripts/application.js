@@ -22,6 +22,7 @@
 //= require cycle
 //= require stats
 //= require graph
+//= require compare
 //= require scripts
 
 
