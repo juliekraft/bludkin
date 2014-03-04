@@ -272,9 +272,10 @@ UI.Cal = Backbone.View.extend({
     var date = rdate.join('');
     console.log("date", date);
 
-    //instantiate new Cycle with start_date filled in
+    //instantiate new Cycle with start_date filled in (and period_end_date hard coded in)
     console.log("archive clicked")
-    var cycle = new Cycle({'start_date': date })
+    var cycle = new Cycle({'start_date': date, 'period_end_date': this.$('#period-end-date-input').val() })
+    console.log(this.$('#period-end-date-input').val())
     cycle.save()
     console.log(cycle, 'cycle')
 

@@ -32,8 +32,9 @@
       <li class="divider"></li>
       <li><a href="/#stats">STATS</a></li>
         <li class="divider"></li>
+      <li><a href="/#follows">Friends</a></li>
       <li><a href="/#all">Search</a></li>
-      <li> <a href="/#users/sign_out">Sign Out</a></li>
+      <li> <a href="/sign_out">Sign Out</a></li>
 
       
     </ul>
@@ -142,7 +143,7 @@
       <h3>Cycle Info</h3>
         <form action="">
           <input id="start-date-input" class="small-3 columns" type="text" placeholder = "Start Date">
-
+          <input id="period-end-date-input" class="small-3 columns" type="text" placeholder = "Period End Date">
           <button class="button radius round"  id="archive">Archive</button>
         </form>
     </div>
@@ -234,10 +235,8 @@
   // </script>
 
   <script id="follows-template" type="text/x-handlebars-template">
-    <h1>FOLLOW TEMPLATE</h1>
-    <p>Followee Name: {{followee.name}}</p>
-     <p>Follower Name: {{follower.name}}</p>
-    <button>Unfollow</button>
+    <h3>Following {{followee.name}}</h3>
+    <button class='tiny button radius round' >Unfollow</button>
   </script>
 
 
