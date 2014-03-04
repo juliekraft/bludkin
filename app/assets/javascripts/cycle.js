@@ -179,6 +179,64 @@ UI.Friends = Backbone.View.extend({
 })
 
 
+UI.Follows = Backbone.View.extend({
+  initialize: function(){
+    this.collection = new FollowCollection();
+    this.collection.fetch()
+    this.listenTo(this.collection, "sync", this.render)
+  },
+
+  template: function(attributes){
+    var source = $('#follows-template').html()
+    var template = Handlebars.compile(source)
+    return template(attributes)
+  },
+
+  render: function(){
+    var self = this;
+    if (!collection) return this;
+
+    console.log(collection, this, "rendering!!!!")
+
+    _.each(collection.models, function(model){
+      var $followees = $(self.template(model.attributes));
+      ui.$el.append($followees)
+    })
+
+    return this;
+  }
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 UI.Cal = Backbone.View.extend({
 
   initialize: function(){
@@ -361,6 +419,12 @@ var Follow = Backbone.Model.extend({
       return "/follows"
     }
   }
+})
+
+var FollowCollection = Backbone.Collection.extend({
+  url: "/follows",
+
+  model: Follow
 })
 
 
