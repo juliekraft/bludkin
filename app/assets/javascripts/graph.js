@@ -19,7 +19,9 @@ var getInfo = function(){
 
       periodData[0].values.push({
         y: cycle.days,
-        x: index
+        x: index,
+        color: '#ff7f0e',
+        key: "Meghann"
       });
 
      })
@@ -52,20 +54,21 @@ var generateChart = function(myData) {
     chart = nv.models.lineChart()
 
 
-    //        .margin({left: 100})
-    // //     .transitionDuration(350)
-    //        .showLegend(true)
-    //        .showYAxis(true)
-    //        .showXAxis(true)
-    //    ;
+            .margin({left: 100})
+           .transitionDuration(350)
+            .useInteractiveGuideline(true)
+            .showLegend(true)
+            .showYAxis(true)
+            .showXAxis(true)
+      ;
 
     chart.xAxis
-      .axisLabel('date')
+      .axisLabel('Cycle')
       .rotateLabels(-45)
-      .tickFormat(function(d) { return d3.time.format('%b %d')(new Date(d)); })
+      .tickFormat(d3.format(',r'));
 
     chart.yAxis
-      .axisLabel('Period Date (y-m-d)')
+      .axisLabel('Cycle Length')
       .tickFormat(d3.format('d'));
 
       d3.select('svg')
@@ -83,7 +86,7 @@ var generateChart = function(myData) {
     //   d3.select('#chart svg')
     //     .datum(info)
     //     .call(chart);
-  
+   nv.utils.windowResize(function() { chart.update() });
      return chart;
   });
 };
