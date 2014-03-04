@@ -9,13 +9,13 @@
 // } 
 
 
-// getInfo = function(){
-//    $.getJSON("/cycles.json", function() {
-//    })
-//    .success(function(data) {
-//       buildData(data)
-//    })
-// }
+getInfo = function(){
+   $.getJSON("/cycles.json", function() {
+   })
+   .success(function(data) {
+      buildData(data)
+   })
+}
 
 
 

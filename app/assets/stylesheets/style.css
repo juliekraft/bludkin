@@ -150,6 +150,12 @@ background-color: #F9F1DC;
   margin-top: 60px;
 }
 
+#chart-container {
+  float: right;
+  width: 600px;
+  height: 600px;
+}
+
 
 
 
