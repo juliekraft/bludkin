@@ -6,7 +6,7 @@ $.ajax({
 
 new Morris.Line({
   // ID of the element in which to draw the chart.
-  element: 'myfirstchart',
+  element: 'compareChart',
   // Chart data records -- each entry in this array corresponds to a point on
   // the chart.
   data: data,
