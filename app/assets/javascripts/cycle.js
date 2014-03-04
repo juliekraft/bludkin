@@ -48,7 +48,11 @@ var App = Backbone.Router.extend({
   },
 
   follows: function(){
-
+    app.current_page = "follows"
+    if (ui) ui.remove()
+    var ui = new UI()
+    var follows = new UI.Follows()
+    ui.$el.empty()
   },
 
    friends: function(){
@@ -199,11 +203,14 @@ UI.Follows = Backbone.View.extend({
 
   render: function(){
     var self = this;
-    if (!collection) return this;
+    console.log(self.collection, "collection")
+    if (!this.collection) return this;
 
-    console.log(collection, this, "rendering!!!!")
+    // console.log(collection, this, "rendering!!!!")
 
-    _.each(collection.models, function(model){
+    _.each(self.collection.models, function(model){
+      // debugger
+      console.log(model, "model")
       var $followees = $(self.template(model.attributes));
       ui.$el.append($followees)
     })
