@@ -21,6 +21,7 @@
 //= require follow
 //= require cycle
 //= require stats
+//= require graph
 //= require scripts
 
 

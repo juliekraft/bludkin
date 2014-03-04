@@ -243,6 +243,7 @@ Devise.setup do |config|
   # is mountable, there are some extra configurations to be taken into account.
   # The following options are available, assuming the engine is mounted as:
   #
+
   #     mount MyEngine, at: '/my_engine'
   #
   # The router that invoked `devise_for`, in the example above, would be:
@@ -260,4 +261,8 @@ Devise.setup do |config|
   # config.omniauth :facebook, "APP_ID", "APP_SECRET",
       # {:scope => 'email, offline_access', :client_options => {:ssl => {:ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'}}}
 
+#for heroku 
+config.secret_key = 'fe94b59db56d61a6243a2e4615ededcfc672e3325298797c2461ac8de5f94b637c50efb1caa0b7946df905cb9e24c9fa841359bfa8ecc606b350de8bd1b642ad'
 end
+
+

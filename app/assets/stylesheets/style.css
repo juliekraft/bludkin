@@ -152,6 +152,11 @@ background-color: #F9F1DC;
 
 .hidden {
   display: none;
+
+#chart-container {
+  float: right;
+  width: 600px;
+  height: 600px;
 }
 
 
