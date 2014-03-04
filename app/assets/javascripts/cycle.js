@@ -3,7 +3,8 @@ var App = Backbone.Router.extend({
     "": "home", // friends network
     "calendar" : "calendar",
     "all" : "friends",
-    "stats" : "stats"
+    "stats" : "stats",
+    "follows" : "follows"
   },
 
   home: function(){
@@ -44,6 +45,14 @@ var App = Backbone.Router.extend({
     // ghost div
     // ui.$el.append(stats.render().$el)
     
+  },
+
+  follows: function(){
+    app.current_page = "follows"
+    if (ui) ui.remove()
+    var ui = new UI()
+    var follows = new UI.Follows()
+    ui.$el.empty()
   },
 
    friends: function(){
@@ -194,11 +203,14 @@ UI.Follows = Backbone.View.extend({
 
   render: function(){
     var self = this;
-    if (!collection) return this;
+    console.log(self.collection, "collection")
+    if (!this.collection) return this;
 
-    console.log(collection, this, "rendering!!!!")
+    // console.log(collection, this, "rendering!!!!")
 
-    _.each(collection.models, function(model){
+    _.each(self.collection.models, function(model){
+      // debugger
+      console.log(model, "model")
       var $followees = $(self.template(model.attributes));
       ui.$el.append($followees)
     })
@@ -206,35 +218,6 @@ UI.Follows = Backbone.View.extend({
     return this;
   }
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 UI.Cal = Backbone.View.extend({

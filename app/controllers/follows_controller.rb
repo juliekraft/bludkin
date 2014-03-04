@@ -5,7 +5,9 @@ class FollowsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json {render json: @follow}
+      format.json do
+        render json: @follow, include: [:followee, :follower]
+      end
     end
   end
 
