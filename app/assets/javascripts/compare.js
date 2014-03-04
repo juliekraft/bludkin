@@ -1,93 +1,24 @@
+$.ajax({
+  type: "GET",
+  url: "/cycles/months",
+  dataType: "json",
+  success: function(data){
 
-// buildData = function(data){
-//   var periodData = [{ values: []}]
-//   x = 0
-//   d3.select(data).each(function(cycle){
-//     periodData.values.push({x: days, y: cycle.days });
-//     x += cycle.days
-//   })
-//   return periodData;
-// } 
-
-
-var getCompareInfo = function(){
-   $.getJSON("/cycles/months.json", function(data) {
-      // data = buildData(data)
-      // myData = data 
-      var compareData = [{ values: []}]
-     _.each(data, function(cycle, index){
-
-      periodData[0].values.push({
-        y: start_days, 
-        x: index,
-        color: '#ff7f0e',
-        key: "Meghann"
-      });
-
-     })
-     
-      console.log("DATA", data)
-
-      generateChart(compareData)
-   })
-}
+new Morris.Line({
+  // ID of the element in which to draw the chart.
+  element: 'myfirstchart',
+  // Chart data records -- each entry in this array corresponds to a point on
+  // the chart.
+  data: data,
+  // The name of the data record attribute that contains x-values.
+  xkey: 'days',
+  // A list of names of data record attributes that contain y-values.
+  ykeys: ['users'],
+  // Labels for the ykeys -- will be displayed when you hover over the
+  // chart.
+  labels: ['Compare Your Kin']
+});
+  }
+})
 
 
-
-
-
-// var data =[{ values: [
-//   {x: 0, y: 10},
-//   {x: 10, y: 15},
-//   {x: 20, y: 30},
-//   {x: 30, y: 20},
-//   {x: 40, y: 50},
-//   {x: 50, y: 90},
-//   {x: 60, y: 70},
-//   {x: 70, y: 90},
-//   {x: 80, y: 10}
-// ]
-// }];
-
-var generateCompareChart = function(myData) {
-
-  nv.addGraph(function() {
-    chart = nv.models.lineChart()
-
-
-            .margin({left: 100})
-           .transitionDuration(350)
-            .useInteractiveGuideline(true)
-            .showLegend(true)
-            .showYAxis(true)
-            .showXAxis(true)
-      ;
-
-    chart.xAxis
-      .axisLabel('Cycle')
-      .rotateLabels(-45)
-      .tickFormat(d3.format(',r'));
-
-    chart.yAxis
-      .axisLabel('Cycle Length')
-      .tickFormat(d3.format('d'));
-
-      d3.select('#cycle-length')
-        .datum(myData)
-        .call(chart)
-    
-
-
-    // chart.YAxis
-    //   .axisLabel('Cycle Length')
-    //   .tickFormat(d3.format('.02f'));
-
-    // var myData = info();
-
-    //   d3.select('#chart svg')
-    //     .datum(info)
-    //     .call(chart);
-   nv.utils.windowResize(function() { chart.update() });
-     return chart;
-  });
-};

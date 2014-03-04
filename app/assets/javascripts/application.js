@@ -23,6 +23,7 @@
 //= require stats
 //= require graph
 //= require compare
+//= require morris
 //= require scripts
 
 
