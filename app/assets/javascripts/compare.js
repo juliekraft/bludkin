@@ -10,8 +10,8 @@
 // } 
 
 
-var getInfo = function(){
-   $.getJSON("/cycles.json", function(data) {
+var getCompareInfo = function(){
+   $.getJSON("/cycles/months.json", function(data) {
       // data = buildData(data)
       // myData = data 
      var periodData = [{ values: []}]
@@ -90,8 +90,3 @@ var generateChart = function(myData) {
      return chart;
   });
 };
-
-
-
-
-
