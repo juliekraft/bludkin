@@ -1,21 +1,34 @@
+
 // buildData = function(data){
-//   var periodData = []
+//   var periodData = [{ values: []}]
 //   x = 0
 //   d3.select(data).each(function(cycle){
-//     periodData.push({x: x, y: cycle.days });
+//     periodData.values.push({x: days, y: cycle.days });
 //     x += cycle.days
 //   })
 //   return periodData;
 // } 
 
 
-getInfo = function(){
-   $.getJSON("/cycles.json", function() {
-   })
-   .success(function(data) {
-      buildData(data)
+var getInfo = function(){
+   $.getJSON("/cycles.json", function(data) {
+      // data = buildData(data)
+      // myData = data 
+     var periodData = [{ values: []}]
+     _.each(data, function(cycle, index){
+
+      periodData[0].values.push({
+        y: cycle.days,
+        x: index
+      });
+
+     })
+      console.log(data)
+
+      generateChart(periodData)
    })
 }
+
 
 
 
@@ -33,7 +46,7 @@ getInfo = function(){
 // ]
 // }];
 
-var generateChart = function() {
+var generateChart = function(myData) {
 
   nv.addGraph(function() {
     chart = nv.models.lineChart()
@@ -56,7 +69,7 @@ var generateChart = function() {
       .tickFormat(d3.format('d'));
 
       d3.select('svg')
-        .datum(data)
+        .datum(myData)
         .call(chart)
     
 
