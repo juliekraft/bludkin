@@ -17,6 +17,7 @@
 //= require handlebars
 //= require d3
 //= require nv.d3
+//= require raphael-min
 //= require fullcalendar
 //= require follow
 //= require cycle
