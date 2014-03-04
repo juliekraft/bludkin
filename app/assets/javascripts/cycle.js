@@ -3,7 +3,8 @@ var App = Backbone.Router.extend({
     "": "home", // friends network
     "calendar" : "calendar",
     "all" : "friends",
-    "stats" : "stats"
+    "stats" : "stats",
+    "follows" : "follows"
   },
 
   home: function(){
@@ -44,6 +45,10 @@ var App = Backbone.Router.extend({
     // ghost div
     // ui.$el.append(stats.render().$el)
     
+  },
+
+  follows: function(){
+
   },
 
    friends: function(){
@@ -206,35 +211,6 @@ UI.Follows = Backbone.View.extend({
     return this;
   }
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 UI.Cal = Backbone.View.extend({
