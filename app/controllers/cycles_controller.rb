@@ -42,6 +42,38 @@ class CyclesController < ApplicationController
     @cycle = Cycle.new
   end
 
+  def months
+
+    users = current_user.follows
+
+    data = {}
+
+    users.each do |user|
+
+      cycles = user.cycles
+
+      cylces_array = cycles.map do |cycle|
+        {
+          start_date: cycle.start_date,
+          stop_date: cycle.period_end_data
+
+        }
+      end
+      data[user.name] = cylces_array
+
+    end
+
+      data[:me] = current_user.cycles.map do |cycle|
+           {
+          start_date: cycle.start_date,
+          stop_date: cycle.period_end_date
+
+        }
+      end
+
+    render json: data
+  end
+
   private
 
   def cycle_params

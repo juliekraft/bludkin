@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   devise :omniauthable, :omniauth_providers => [:facebook]
 
   #associations
-  has_many :follows
+  has_many :follows, foreign_key: :followee_id
   has_many :cycles
   has_many :messages
 

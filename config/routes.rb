@@ -13,7 +13,11 @@ Bludkin::Application.routes.draw do
 
   get '/home/friend' => 'home#friend'
 
-  resources :cycles
+  get '/cycles/months' => 'cycles#months'
+
+  resources :cycles 
+   
+
   resources :follows
 
   devise_scope :user do
