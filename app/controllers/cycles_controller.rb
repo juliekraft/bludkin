@@ -46,7 +46,13 @@ class CyclesController < ApplicationController
 
     users = current_user.follows
 
-    data = {}
+    data = {
+
+      me: {},
+      followers: {}
+
+
+    }
 
     users.each do |user|
 
@@ -57,9 +63,10 @@ class CyclesController < ApplicationController
           start_date: cycle.start_date,
           stop_date: cycle.period_end_data
 
+
         }
       end
-      data[user.name] = cylces_array
+      data[:followers][user.name] = cylces_array
 
     end
 
@@ -70,6 +77,9 @@ class CyclesController < ApplicationController
 
         }
       end
+
+  
+
 
     render json: data
   end

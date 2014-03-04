@@ -14,6 +14,17 @@ var getCompareInfo = function(){
    $.getJSON("/cycles/months.json", function(data) {
       // data = buildData(data)
       // myData = data 
+      var compareData = [{ values: []}]
+     _.each(data, function(cycle, index){
+
+      periodData[0].values.push({
+        y: start_days, 
+        x: index,
+        color: '#ff7f0e',
+        key: "Meghann"
+      });
+
+     })
      
       console.log("DATA", data)
 
