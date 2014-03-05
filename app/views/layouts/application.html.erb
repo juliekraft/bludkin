@@ -159,10 +159,17 @@
 
 <!-- Splash page home page -->
   <script id="home-template" type="text/x-handlebars-template">
-     <div class="row" id="logo"><%= image_tag "logo.png", id: "logo" %>
-     <h1>Is Today the Day?</h1>
-     <button class="button radius round" >Yes</button> <button class="button radius round" >No</button>
-     </div>
+    <div class="row">
+      <div class="twelve columns text-center" id="logo"><br/><%= image_tag "logo.png", id: "logo" %>
+      <h1>Is Today the Day?</h1>
+      <form action="/#calendar">
+        <button class="button radius round" >Yes</button>
+      </form>
+      <form action="/#stats">      
+        <button class="button radius round" >No</button>
+      </form>
+      </div>
+    </div>
   </script>
 
   
