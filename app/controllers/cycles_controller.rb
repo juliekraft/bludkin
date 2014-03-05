@@ -43,43 +43,52 @@ class CyclesController < ApplicationController
   end
 
   def months
+    # data = User.find_by_sql('select users.name, cycles.start_date, cycles.period_end_date from users full outer join cycles on users.id = cycles.user_id')
 
-    users = current_user.follows
+    data = Cycle.all.pluck(:user_id, :start_date, :period_end_date)
 
-    data = {
-
-      me: {},
-      followers: {}
-
-
-    }
-
-    users.each do |user|
-
-      cycles = user.cycles
-
-      cylces_array = cycles.map do |cycle|
-        {
-          start_date: cycle.start_date,
-          stop_date: cycle.period_end_data
-
-
-        }
-      end
-      data[:followers][user.name] = cylces_array
-
+    data = data.map do |hash|
+      hash.range = 4
     end
 
-      data[:me] = current_user.cycles.map do |cycle|
-           {
-          start_date: cycle.start_date,
-          stop_date: cycle.period_end_date
+    # data = current_user.follows.cycles
 
-        }
-      end
+    # data = current_user.follows.cycles
 
-  
 
+    # users = current_user.follows
+
+    # data = [
+
+    #   me: {},
+    #   followers: {}
+
+
+    # ]
+
+    # users.each do |user|
+
+    #   cycles = user.cycles
+
+    #   cylces_array = cycles.map do |cycle|
+    #     {
+    #       start_date: cycle.start_date,
+    #       stop_date: cycle.period_end_data
+    #       label: cycle.user.name
+
+    #     }
+    #   end
+    #   data[1][user.name] = cylces_array
+
+    # end
+
+    #   data[0] = current_user.cycles.map do |cycle|
+    #        {
+    #       start_date: cycle.start_date,
+    #       stop_date: cycle.period_end_date
+    #       label: current_user.name
+
+    #     }
 
     render json: data
   end

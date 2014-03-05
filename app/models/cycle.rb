@@ -1,5 +1,6 @@
 class Cycle < ActiveRecord::Base
   belongs_to :user
+  
   has_many :cycle_contents
 
   def as_json(options={})
