@@ -157,9 +157,10 @@ background-color: #F9F1DC;
 
 #chart-container {
   float: right;
+  margin-left: 0px;
   /*background-color: white;*/
-  width: 600px;
-  height: 400px;
+  width: 1300px;
+  height: 410px;
 }
 
 

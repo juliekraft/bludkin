@@ -184,7 +184,20 @@ UI.Friends = Backbone.View.extend({
 
   el: function(){
     return $('#main-container');
-  }
+  },
+
+  events: {////////////////////////////////////DELETE
+      'click #unfollow' : 'unfollowCallback'
+
+  },
+
+  unfollowCallback: function(e){
+    e.preventDefault();
+    console.log('works')
+    var unfollow = this.$(e.target).closest
+    console.log(this.$(e.target).closest())
+
+  } //////////////////////////////////////////////
 })
 
 
@@ -203,14 +216,14 @@ UI.Follows = Backbone.View.extend({
 
   render: function(){
     var self = this;
-    console.log(self.collection, "collection")
+    // console.log(self.collection, "collection")
     if (!this.collection) return this;
 
     // console.log(collection, this, "rendering!!!!")
 
     _.each(self.collection.models, function(model){
       // debugger
-      console.log(model, "model")
+      // console.log(model, "model")
       var $followees = $(self.template(model.attributes));
       ui.$el.append($followees)
     })
