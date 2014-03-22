@@ -68,8 +68,17 @@ nav {
     width: 50%;
     display: center;
     font: center;
+    text-align: center;
     margin-top: 40px;
+    border-radius: 20%;
+    
 
+    }
+
+    #center {
+      margin-left: 350px;
+      /*box-shadow: 10px 10px 5px #888888;
+      background-color: white;*/
     }
 /*  nav {
     display: inline;
